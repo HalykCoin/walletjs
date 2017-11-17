@@ -1,4 +1,5 @@
 const electron = require('electron')
+const {ipcRenderer} = require('electron')
 // Module to control application life.
 const app = electron.app
 // Module to create native browser window.
@@ -6,6 +7,96 @@ const BrowserWindow = electron.BrowserWindow
 
 const path = require('path')
 const url = require('url')
+const http = require('http')
+const rpc = require('./js/modules/rpc.interface.js')
+const db = require('./js/modules/database.interface.js')
+
+const {Menu} = require('electron')
+
+const DEBUG = true;
+const APP_FOLDER = app.getPath("home")+ "/.walletjs";
+var {ipcMain} = electron;
+
+var defaultWallet = "default";
+
+var sync = {"sync_current":0, "sync_target":0 , "ready" : false};
+
+console.log("Folder path:"+app.getPath("documents"));
+
+
+//**********DATABASE  INITIALIZATION********************
+db.initDb(APP_FOLDER, function(){
+    console.log("Database inited");
+});
+
+
+
+//**********RPC DEMON INITIALIZATION********************
+rpc.init(APP_FOLDER,function(){
+
+    //When demon is ready
+    console.log("RPC deamon is ready");
+    sync.ready = true;
+
+}, function(sync_current, sync_targert){
+    //When deamon is in the synchronization process
+
+    sync.sync_current =  sync_current;
+    sync.sync_target =  sync_targert;
+    sync.ready =  false;
+
+}, function(){
+    console.log("An unknown error occurred during RPC initialization");
+});
+
+
+
+const template = [
+    {
+        label: 'Edit',
+        submenu: [
+            {role: 'undo'},
+            {role: 'redo'},
+            {type: 'separator'},
+            {role: 'cut'},
+            {role: 'copy'},
+            {role: 'paste'},
+            {role: 'pasteandmatchstyle'},
+            {role: 'delete'},
+            {role: 'selectall'}
+        ]
+    },
+    {
+        label: 'View',
+        submenu: [
+            {role: 'reload'},
+            {role: 'forcereload'},
+            {role: 'toggledevtools'},
+            {type: 'separator'}
+        ]
+    },
+    {
+        role: 'window',
+        submenu: [
+            {role: 'minimize'},
+            {role: 'close'}
+        ]
+    },
+    {
+        role: 'help',
+        submenu: [
+            {
+                label: 'Learn More',
+                click () { require('electron').shell.openExternal('https://electron.atom.io') }
+    }
+]
+}
+]
+
+const menu = Menu.buildFromTemplate(template)
+Menu.setApplicationMenu(menu)
+
+
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -13,7 +104,7 @@ let mainWindow
 
 function createWindow () {
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 800, height: 600})
+  mainWindow = new BrowserWindow({width: 1100, height: 700 , frame: false, resizable: false})
 
   // and load the index.html of the app.
   mainWindow.loadURL(url.format({
@@ -30,9 +121,14 @@ function createWindow () {
     // Dereference the window object, usually you would store windows
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
+      require('./js/modules/rpc.interface.js').destroy();
     mainWindow = null
   })
 }
+
+electron.app.on('browser-window-created',function(e,window) {
+   if(!DEBUG) window.setMenu(null);
+});
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
@@ -43,9 +139,12 @@ app.on('ready', createWindow)
 app.on('window-all-closed', function () {
   // On OS X it is common for applications and their menu bar
   // to stay active until the user quits explicitly with Cmd + Q
+
+  require('./js/modules/rpc.interface.js').destroy();
   if (process.platform !== 'darwin') {
     app.quit()
   }
+
 })
 
 app.on('activate', function () {
@@ -58,3 +157,25 @@ app.on('activate', function () {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+
+ipcMain.on('async', (event, arg) => {
+    if(typeof(arg.action) != "undefined"){
+        if(arg.action == "rpc-wallet" && typeof arg.body =="object"){
+            rpc.request(arg.body, function(resp){
+                var responce =JSON.parse(resp);
+                responce['request'] = arg.body;
+                console.log(responce);
+                event.sender.send('async-reply-'+arg.msg_id, responce);
+            }, function(m){
+                event.sender.send('async-reply-'+arg.msg_id, m);
+            });
+        }
+
+        if(arg.action == "rpc-deamon-console-sync" && typeof arg.body =="object"){
+            console.log(sync);
+            event.sender.send('async-reply-'+arg.msg_id, sync);
+        }
+
+    }
+});

@@ -1,22 +1,25 @@
 {
-  "name": "electron-quick-start",
+  "name": "WalletJS",
   "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "description": "NodeJS implementation for Monero family blockchain servers",
   "main": "main.js",
   "scripts": {
     "start": "electron ."
   },
-  "repository": "https://github.com/electron/electron-quick-start",
+  "repository": "",
   "keywords": [
-    "Electron",
-    "quick",
-    "start",
-    "tutorial",
-    "demo"
+    "Wallet",
+    "Cryptocurrency",
+    "Monero",
+    "Halykcoin"
   ],
-  "author": "GitHub",
+  "author": "HalykCoin",
   "license": "CC0-1.0",
   "devDependencies": {
     "electron": "~1.7.8"
+  },
+  "dependencies": {
+    "sql.js": "^0.4.0",
+    "qr-image": "^3.1.0"
   }
 }

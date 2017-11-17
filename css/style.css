@@ -1,0 +1,289 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400');
+body {
+    margin: 0;
+    font-family: -apple-system, 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica', 'Ubuntu', 'Cantarell', 'Arial', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+
+    background: radial-gradient(circle at right top, rgb(253, 254, 255) 0%,rgb(236, 236, 236) 15%,rgb(247, 247, 247) 32%,rgb(239, 239, 239) 49%,rgb(254, 248, 255) 63%,rgba(244,249,255,1) 78%,rgb(252, 247, 255) 100%),radial-gradient(circle at center, rgb(253, 254, 255) 0%,rgb(236, 236, 236) 15%,rgb(247, 247, 247) 32%,rgb(239, 239, 239) 49%,rgb(254, 248, 255) 63%,rgba(244,249,255,1) 78%,rgb(252, 247, 255) 100%);
+    background-position: 50% 50%;
+    background-size: cover;
+    min-height: 100vh;
+
+}
+h1 {
+    font-weight: 100;
+    font-size: 42px;
+    margin-bottom: 60px;
+}
+.wwl-dashboard {
+    width: 270px;
+    height: 100vh;
+    display: block;
+    float: left;
+    box-sizing: border-box;
+    padding: 10px 10px;
+
+}
+.wwl-balance {
+    background: #276fc6; /* Old browsers */
+    background: -moz-linear-gradient(45deg, #276fc6 0%, #2989d8 48%, #79b7e0 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(45deg, #276fc6 0%,#2989d8 48%,#79b7e0 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(45deg, #276fc6 0%,#2989d8 48%,#79b7e0 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#276fc6', endColorstr='#79b7e0',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+    width: 100%;
+    float: left;
+    border-radius: 4px;
+
+    color: white;
+    text-align: center;
+
+    font-weight: 100;
+
+    font-family: 'Open Sans', sans-serif;
+    padding: 10px 10px;
+
+    -webkit-box-shadow: 0px 0px 24px 8px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 0px 24px 8px rgba(0,0,0,0.2);
+    box-shadow: 0px 0px 24px 8px rgba(0,0,0,0.2);
+    transition: all 0.1s linear 0s;
+    transform: translateX(0) scale(1,1);
+
+}
+.wwl-balance:hover {
+    transform: translateX(10px) scale(1.1,1.1);
+    transition: all 0.1s linear 0s;
+}
+.wwl-brand {
+    padding: 10px 0px;
+    width: 64px;
+}
+.wwl-brand img {
+    width: 41px;
+}
+.wwl-logo-name {
+    text-transform: uppercase;
+    font-size: 12px;
+}
+.wwl-balance-balance{
+
+}
+.wwl-balance-text {
+    float: left;
+    width: 100%;
+    text-align: left;
+    font-size: 11px;
+    color: rgba(255,255,255,.5);
+}
+.wwl-balance-sum {
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: rgba(255,255,255,.85);
+}
+.wwl-balance-sum-special {
+    font-size: 20px;
+    color: rgba(255,255,255,.95);
+}
+.wwl-balance-available {
+
+}
+.wwl-nav {
+
+}
+.wwl-nav li {
+    list-style-type: none;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(0,0,0,.05);
+}
+.wwl-nav ul {
+    padding: 0 10px;
+    margin: 0;
+    width: 100%;
+    float: left;
+    margin-top: 40px;
+}
+.wwl-nav a {
+    color: inherit;
+    text-decoration: none;
+    font-size: 30px;
+    font-weight: 200;
+    color: rgba(0,0,0,.5);
+    transition: all 0.1s linear 0s;
+    transform: translateX(0) scale(1,1);
+    display: block;
+
+}
+.wwl-nav a:hover {
+    color: rgb(63, 143, 204);
+    transform: translateX(10px) scale(1.1,1.1);
+    transition: all 0.1s linear 0s;
+
+}
+.wwl-nav .wwl-current {
+    color: rgb(63, 143, 204);
+    transform: translateX(10px) scale(1.1,1.1);
+
+}
+.wwl-sync {
+
+}
+.wwl-container {
+    width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    position: relative;
+}
+.wwl-row {
+    width: 100%;
+    float: left;
+    margin-bottom: 30px;
+}
+.wwl-page {
+
+}
+.wwl-field {
+    text-align: left;
+    font-size: 13px;
+    color: rgba(0,0,0,.5);
+    font-style: italic;
+    font-weight: 100;
+    margin-bottom: 2px;
+    z-index: 0;
+    position: relative;
+}
+.wwl-input {
+    width: 100%;
+    background: none;
+    border: none;
+    border-bottom: 1px solid rgba(0,0,0,.05);
+    box-shadow: none;
+    font-size: 16px;
+    z-index: 1;
+    margin-bottom: 15px;
+}
+
+.wwl-input:focus {
+    outline:none;
+}
+.wwl-button-primary {
+    background: #276fc6;
+    border: 1px solid rgba(0,0,0,0);
+    background: -moz-linear-gradient(45deg, #276fc6 0%, #2989d8 48%, #79b7e0 100%);
+    background: -webkit-linear-gradient(45deg, #276fc6 0%,#2989d8 48%,#79b7e0 100%);
+    background: linear-gradient(45deg, #276fc6 0%,#2989d8 48%,#79b7e0 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#276fc6', endColorstr='#79b7e0',GradientType=1 );
+    border: none !important;
+    border-radius: 26px;
+    color: rgba(0,0,0, 0.55) !important;
+    height: 32px !important;
+    line-height: 32px !important;
+    transition: all 0.2s ease-in-out 0s !important;
+    color: white !important;
+    text-decoration: none;
+    padding: 3px 20px;
+    display: inline-block;
+    width: auto;
+    font-size: 14px;
+    font-weight: 100;
+    margin-right: 20px;
+}
+.wwl-button {
+    background: none;
+    border: 1px solid rgba(0,0,0,.1);
+    border-radius: 26px;
+    color: rgba(0,0,0, 0.55) !important;
+    height: 32px !important;
+    line-height: 32px !important;
+    transition: all 0.2s ease-in-out 0s !important;
+    color: rgba(0,0,0,.5) !important;
+    text-decoration: none;
+    padding: 2px 20px;
+    display: inline-block;
+    width: auto;
+    font-size: 14px;
+    margin-right: 20px;
+}
+
+
+
+body {
+    background-color: #ecdcae;
+
+}
+
+#window_header {
+    -webkit-app-region:drag;
+    cursor: pointer;
+}
+
+
+#wallet_loading_process {
+    width: 60%;
+    background-color: rgba(121, 183, 224, 0.49);
+}
+#wallet_loading_process_bar {
+    width: 1%;
+    height: 30px;
+
+    background: #276fc6; /* Old browsers */
+    background: -moz-linear-gradient(45deg, #276fc6 0%, #2989d8 48%, #79b7e0 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(45deg, #276fc6 0%,#2989d8 48%,#79b7e0 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(45deg, #276fc6 0%,#2989d8 48%,#79b7e0 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#276fc6', endColorstr='#79b7e0',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+
+    transition: width 2s;
+}
+
+#wallet_loading_process_bar_label {
+    min-width: 400px;
+    text-align: center;
+    font-size: 12px;
+    color: white;
+    padding-top: 9px;
+}
+
+#window_splash {
+    background: #276fc6; /* Old browsers */
+    background: -moz-linear-gradient(45deg, #276fc6 0%, #2989d8 48%, #79b7e0 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(45deg, #276fc6 0%,#2989d8 48%,#79b7e0 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(45deg, #276fc6 0%,#2989d8 48%,#79b7e0 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#276fc6', endColorstr='#79b7e0',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+    width: 100%;
+    height: 700px;
+    -webkit-app-region:drag;
+}
+
+.wwl-splash-brand img {
+    width: 200px;
+}
+
+.wwl-splash-brand {
+    padding-top: 200px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 25px;
+    color: white;
+}
+
+#loader-news-block{
+    width: 60%;
+    height: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.loader-news{
+    margin-bottom: 15px
+}
+
+.copy{
+    font-size: 10px;
+    color: white;
+}
+
+.unslider-nav {
+    display: none;
+}
