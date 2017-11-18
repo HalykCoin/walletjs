@@ -348,5 +348,5 @@ body {
     border-bottom: 1px solid rgba(0,0,0,.05);
 }
 #wallet_loading_process_bar_label {
-    color: black;
+    color: rgba(0,0,0,.5);
 }
