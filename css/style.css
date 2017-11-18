@@ -339,3 +339,14 @@ body {
     color: black !important;
     border: 1px solid rgba(0,0,0,.35) !important;
 }
+#wallet_loading_process_bar {
+    background: none;
+    border-bottom: 2px solid #276fc6;
+}
+#wallet_loading_process {
+    background: none;
+    border-bottom: 1px solid rgba(0,0,0,.05);
+}
+#wallet_loading_process_bar_label {
+    color: black;
+}
