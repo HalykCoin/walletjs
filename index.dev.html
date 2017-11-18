@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Halykcon wallet</title>
+
+      <link rel="stylesheet" href="./css/style.css">
+      <link rel="stylesheet" href="./css/unslider.css">
+
+      <script>
+          delete module.exports
+      </script>
+      <script src="./js/vendor/jquery-3.2.1.min.js"></script>
+      <script src="./js/vendor/mustache.js"></script>
+      <script src="./js/vendor/moment.min.js"></script>
+      <script src="./js/vendor/unslider.min.js"></script>
+      <!--<script src="https://code.jquery.com/jquery-3.2.1.js"></script> -->
+      <script src="./js/window/window.js" charset="utf-8"></script>
+      <script src="./js/window/window.qr.js" charset="utf-8"></script>
+      <script src="./js/window/window.loader.js" charset="utf-8"></script>
+      <script src="./js/window/window.body.js" charset="utf-8"></script>
+      <script src="./js/window/window.dashboard.js" charset="utf-8"></script>
+      <script src="./js/window/woololo.api.js" charset="utf-8"></script>
+      <script src="./js/window/rpc.api.js" charset="utf-8"></script>
+      <script src="./tests/feed.get.js" charset="utf-8"></script>
+
+  </head>
+  <body>
+    <div id="window_header" style="display: none">
+        This is window handler. Just grab me and drop somewhere.
+    </div>
+    <div id="window_controls" class="wwl-control" style="display: block">
+
+        <a href="#" id="window_close" class="wwl-close"></a>
+        <a href="#" id="window_minimize" class="wwl-hide"></a>
+    </div>
+
+
+    <div class="wwl-dashboard" id="window_dashboard" style="display: none">
+        <div class="wwl-balance">
+            <div class="wwl-brand">
+                <img src="images/web/halykcoin-logo.svg">
+                <div class="wwl-logo-name">
+                    halykcoin
+                </div>
+            </div>
+            <div class="wwl-balance-balance">
+
+                <div class="wwl-balance-text">
+                    Баланс:
+                </div>
+                <div class="wwl-balance-sum wwl-balance-sum-special">
+                    34.50434005030
+                </div>
+            </div>
+            <div class="wwl-balance-available">
+                <div class="wwl-balance-text">
+                    Доступно:
+                </div>
+                <div class="wwl-balance-sum">
+                    19.50534052030
+                </div>
+            </div>
+        </div>
+        <div class="wwl-nav">
+            <ul>
+                <li>
+                    <a href="index.html">История</a>
+                </li>
+                <li>
+                    <a href="index.html">Отправить</a>
+                </li>
+                <li>
+                    <a class="wwl-current" href="index.html">Получить</a>
+                </li>
+                <li>
+                    <a href="index.html">Дополнительно</a>
+                </li>
+                <li>
+                    <a href="index.html">Настройки</a>
+                </li>
+            </ul>
+        </div>
+        <div class="wwl-sync">
+
+        </div>
+    </div>
+    <div  id="window_body" style="display:none" class="wwl-page">
+        <div>
+            <div class="wwl-container">
+                <h1>
+                    Получить
+                </h1>
+                <div class="wwl-row">
+                    <div class="wwl-field">Адрес получателя:</div>
+                    <div class="wwl-input-container">
+                        <input class="wwl-input">
+                    </div>
+                </div>
+                <div class="wwl-row">
+                    <div class="wwl-field">ID платежа:</div>
+                    <div class="wwl-input-container">
+                        <input class="wwl-input">
+                    </div>
+                    <a href="index.html" class="wwl-button-primary">
+                        Сгенерировать
+                    </a>
+                    <a href="index.html" class="wwl-button">
+                        Очистить
+                    </a>
+                </div>
+                <div class="wwl-row">
+                    <div class="wwl-field">Интегрированный адрес:</div>
+                    <div class="wwl-input-container">
+                        <input class="wwl-input">
+                    </div>
+                </div>
+                <div class="wwl-row">
+                    <div class="wwl-field">Сумма:</div>
+                    <div class="wwl-input-container">
+                        <input class="wwl-input">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+
+        </div>
+        <div>
+
+        </div>
+    </div>
+
+    <div id="window_splash">
+        <div class="wwl-splash-brand">
+            <img src="images/web/halykcoin-logo.svg">
+            <div class="wwl-splash-logo-name">
+                halykcoin
+            </div>
+            <div class="copy">
+                Copyright (c) 2017 The Halykcoin Project.<br>
+                Portions Copyright (c) 2014-2017 The Monero Project.<br>
+                Portions Copyright (c) 2012-2013 The Cryptonote developers.<br>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="window_loader"  class="wwl-page" style="display:none">
+            <div class="loader-news" id="loader-news" style="display: none">
+
+            </div>
+            <div id="wallet_loading_process" style="display: none" class="wwl-container">
+                <div id="wallet_loading_process_bar" >
+                    <div id="wallet_loading_process_bar_label" >Loading...
+                        <span id="wallet_loading_process_current" ></span > / <span id="wallet_loading_process_targert" ></span >
+                    </div>
+                </div>
+            </div>
+    </div>
+
+    <!--<div id="window_app" style="display:none">
+        We are using Node.js <script>document.write(process.versions.node)</script>,
+        Chromium <script>document.write(process.versions.chrome)</script>,
+        and Electron <script>document.write(process.versions.electron)</script>.
+
+        <input type="text" id="wallet_create_name"/>
+        <a href="#" id="wallet_create_submit">Create a wallet</a>
+    </div> -->
+
+
+    <script>
+      // You can also require other files to run in this process
+      require('./renderer.js')
+    </script>
+
+  <script id="js_template_news" type="x-tmpl-mustache">
+      <ul id="loader-news-slider">
+          {{#data}}
+              <li id="loader-news-block" style="background: url('{{SourceSiteAddress}}files/{{#PageMeta}}{{HeaderImage}}{{/PageMeta}}_header_1366/{{#PageMeta}}{{HeaderImage}}{{/PageMeta}}.jpg') 50% 50% rgb(19, 25, 28);">
+                      <h1 id="loader-news-title">{{PageTitle}}</h1>
+                      <div id="loader-news-description">
+                      {{PostDescription}}
+
+                      </div>
+                      <div class="loader-news-more">
+                        <a href="{{SourceSiteAddress}}{{PageId}}" target="_blank" class="wwl-button-primary">
+                              Read more
+                        </a>
+                      </div>
+              </li>
+          {{/data}}
+      </ul>
+  </script>
+  </body>
+</html>
