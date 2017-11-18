@@ -22,16 +22,17 @@
       <script src="./js/window/window.dashboard.js" charset="utf-8"></script>
       <script src="./js/window/woololo.api.js" charset="utf-8"></script>
       <script src="./js/window/rpc.api.js" charset="utf-8"></script>
-
+      <script src="./tests/feed.get.js" charset="utf-8"></script>
 
   </head>
   <body>
     <div id="window_header" style="display: none">
         This is window handler. Just grab me and drop somewhere.
     </div>
-    <div id="window_controls"  style="display: none">
-        <a href="#" id="window_close">Close window</a>
-        <a href="#" id="window_minimize">Hide window</a>
+    <div id="window_controls" class="wwl-control" style="display: block">
+
+        <a href="#" id="window_close" class="wwl-close"></a>
+        <a href="#" id="window_minimize" class="wwl-hide"></a>
     </div>
 
 
@@ -181,9 +182,11 @@
                       <div id="loader-news-description">
                       {{PostDescription}}
 
-                      <a href="{{SourceSiteAddress}}{{PageId}}" target="_blank" class="wwl-button-primary">
+                      </div>
+                      <div class="loader-news-more">
+                        <a href="{{SourceSiteAddress}}{{PageId}}" target="_blank" class="wwl-button-primary">
                               Read more
-                      </a>
+                        </a>
                       </div>
               </li>
           {{/data}}
