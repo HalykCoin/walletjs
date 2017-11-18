@@ -4,23 +4,40 @@
  * Time: 8:48 PM
  * To change this template use File | Settings | File Templates.
  */
-
+var settings = null;
 const http = require('http');
 const exec = require('child_process').exec;
 const spawn = require('child_process').spawn;
+const crypto = require('crypto');
+const fs = require('fs')
+var encryptionMethod = 'aes-256-ctr';
 
 var rpcDeamonPort = 19237;
 var rpcServer =null;
 var blockchainServer;
 var rpcServerIsReady = false;
 
+var blockchainServerExec = './server/build/release/bin/monerod';
+var rpcServerExec = './server/build/release/bin/monero-wallet-rpc';
+
 const _defaultRpcHeaders = {"jsonrpc":"2.0", "id":"0"};
+var currentSettingscurrentSettings;
 
 
 function _getRandomPort() {
     var charSet = '0123456789';
     var randomString = '6';
     for (var i = 0; i < 3; i++) {
+        var randomPoz = Math.floor(Math.random() * charSet.length);
+        randomString += charSet.substring(randomPoz,randomPoz+1);
+    }
+    return randomString;
+}
+
+function _geenerateWalletName() {
+    var charSet = 'AQEYUIOJ0123456789';
+    var randomString = '';
+    for (var i = 0; i < 32; i++) {
         var randomPoz = Math.floor(Math.random() * charSet.length);
         randomString += charSet.substring(randomPoz,randomPoz+1);
     }
@@ -49,17 +66,23 @@ $interface.createWallet = function(params, onSuccess, onError){
 
 
 
-function init(appFolder, onReady, onNetworkSync, onFail) {
-    //exec('killall -9 monero-wallet-rpc');
+function init(appFolder, incommingSettings, onReady, onNetworkSync, onFail) {
+
+    settings = incommingSettings;
+
+    //settings.init(appFolder);
+    initFileSystem(appFolder);
+
+    currentSettings = settings.getSetting();
 
     const args = [
-        "--wallet-dir="+appFolder,
+        "--wallet-dir="+appFolder+"/wallets",
         "--rpc-bind-ip=127.0.0.1",
         "--rpc-bind-port="+rpcPort,
         "--disable-rpc-login"
     ];
     //./build/release/bin/monero-wallet-rpc --wallet-file=test --rpc-bind-ip 127.0.0.1 --rpc-bind-port 18082 --disable-rpc-login
-    blockchainServer = spawn('./server/build/release/bin/monerod');
+    blockchainServer = spawn(blockchainServerExec);
 
 
     blockchainServer.stdout.on('data', (data) => {
@@ -75,7 +98,7 @@ function init(appFolder, onReady, onNetworkSync, onFail) {
         if(blockchainServerOutput.search("You may now start monero-wallet-cli.")>0){
             console.log(`${data}`);
 
-            rpcServer = spawn('./server/build/release/bin/monero-wallet-rpc', args);
+            rpcServer = spawn(rpcServerExec, args);
 
             rpcServer.stdout.on('data', (data) => {
                 var rpcServerOutput = `${data}`;
@@ -83,6 +106,7 @@ function init(appFolder, onReady, onNetworkSync, onFail) {
                 if(rpcServerOutput.search("Starting wallet rpc server")>0){
                     rpcServerIsReady = true;
                     console.log(`${data}`);
+
                     if(typeof onReady=="function") onReady();
                 }
             });
@@ -116,13 +140,10 @@ function init(appFolder, onReady, onNetworkSync, onFail) {
     blockchainServer.on('close', (code) => {
             console.log(`child process exited with code ${code}`);
         });
-
 }
 
 
 function destroy(){
-    //console.log("Sending SIGHUP signal to the deamon");
-
     stopHalykcoinDeamon(function(){
         console.log("Halykcoin deamon is shouted down");
         rpcServer.kill('SIGKILL');
@@ -133,9 +154,6 @@ function destroy(){
         blockchainServer.kill('SIGKILL');
         process.exit();
     });
-
-
-    //blockchainServer.stdin.write("exit");
 }
 
 function stopHalykcoinDeamon(onSuccess, onError){
@@ -157,7 +175,6 @@ function stopHalykcoinDeamon(onSuccess, onError){
 
     if(typeof onError=="function") req.on('error', onError);
 
-   // req.write(postData);
     req.end();
 }
 
@@ -169,6 +186,35 @@ function request(request, onSuccess, onError){
     if(!rpcServerIsReady){
         if(typeof onError=="function")  onError({"m":"RPC server is not ready"});
         return;
+    }
+
+    if(request.method == 'open_wallet'){
+        if(typeof request.params.pin =="string"){
+
+            if(request.params.filename ==''){
+                request.params.filename = currentSettings.wallet_name;
+            }
+
+            request.params.password = decrypt(currentSettings.wallet_password, request.params.pin)
+        } else {
+            if(typeof onError=="function") req.on('error', onError);
+        }
+    }
+
+    if(request.method == 'create_wallet'){
+        if(typeof request.params.pin =="string"){
+            currentSettings.wallet_password =  encrypt(request.params.password, request.params.pin);
+            if(request.params.filename ==''){
+                request.params.filename = _geenerateWalletName();
+                currentSettings.wallet_name = request.params.filename;
+            }
+
+            settings.setSetting(currentSettings);
+            console.log("New wallet has been generated. Wallet name: "+request.params.filename+ " Wallet password: "+
+                currentSettings.wallet_password);
+        }  else {
+            if(typeof onError=="function") req.on('error', onError);
+        }
     }
 
     Object.assign( _defaultRpcHeaders, request);
@@ -199,6 +245,32 @@ function request(request, onSuccess, onError){
     req.end();
 }
 
+function initFileSystem(appPath){
+    if (fs.existsSync(appPath)) {
+        if (!fs.existsSync(appPath+"/wallets")) {
+            fs.mkdir(appPath+"/wallets");
+        }
+
+    } else {
+        fs.mkdir(appPath);
+        fs.mkdir(appPath+"/wallets");
+        console.log("Create wallet folder");
+    }
+}
+
+function encrypt(password_plain, pin){
+    var cipher = crypto.createCipher(encryptionMethod, pin)
+    var crypted = cipher.update(password_plain,'utf8','hex')
+    crypted += cipher.final('hex');
+    return crypted;
+}
+
+function decrypt(password_encrypted, pin){
+    var decipher = crypto.createDecipher(encryptionMethod, pin)
+    var dec = decipher.update(password_encrypted,'hex','utf8')
+    dec += decipher.final('utf8');
+    return dec;
+}
 
 
 module.exports.init = init;

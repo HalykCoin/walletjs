@@ -33,8 +33,8 @@ application.api.query = function(app, module, action, data, onSuccess, onFailure
     jQuery.ajax({
         type: "POST",
         url: application.api.url + "/api20/resource/"+app+"/"+module+"."+action+"",
-        dataType: "text",
         crossDomain: true,
+        dataType: 'jsonp',
         async: true,
         data: r_data,
         success: function(data){

@@ -95,7 +95,6 @@ $RPC.Api.DeletedressBook = function(index, onSuccess, onError){
     $RPC.Api.rpcWalletSend(postData, onSuccess, onError);
 };
 
-
 $RPC.Api.GetAddress = function(onSuccess, onError){
     const postData = {"method":"getaddress",
         "params":{ }
@@ -103,12 +102,13 @@ $RPC.Api.GetAddress = function(onSuccess, onError){
     $RPC.Api.rpcWalletSend(postData, onSuccess, onError);
 };
 
-
-$RPC.Api.WalletCreate = function(filename, password, onSuccess, onError){
+//$RPC.Api.WalletCreate('mytestpassword', '0000')
+$RPC.Api.WalletCreate = function(password, pin, onSuccess, onError){
     const postData = {"method":"create_wallet",
         "params":{
-            "filename":filename,
+            "filename":'',
             "password":password,
+            "pin" : pin,
             "language":"English"}
     };
 
@@ -116,11 +116,12 @@ $RPC.Api.WalletCreate = function(filename, password, onSuccess, onError){
 };
 
 //$RPC.Api.WalletOpen('default')
-$RPC.Api.WalletOpen = function(filename, password, onSuccess, onError){
+$RPC.Api.WalletOpen = function(filename, password, pin, onSuccess, onError){
     const postData = {"method":"open_wallet",
         "params":{
             "filename":filename,
             "password":password,
+            "pin" : pin,
             "language":"English"}
     };
 
@@ -165,6 +166,28 @@ $RPC.Api.rpcDeamonConsoleSend = function(args, callback){
 
     ipcRenderer.on('async-reply-'+msg_id, (event, arg) => {
         if(typeof callback=="function") callback(arg);
+});
+};
+
+
+$
+
+$RPC.Api.mainProcessSend = function(args, callback, onError){
+    var msg_id = +_getRandomPort(34);
+    ipcRenderer.send('async', {
+        "action" : "main-action",
+        "body" : args,
+        "msg_id" : msg_id
+    });
+
+    ipcRenderer.on('async-reply-'+msg_id, (event, arg) => {
+        console.log(arg);
+    if(typeof arg.error =='object'){
+        if(typeof onError=="function") onError(arg.error.code, arg.error.message);
+    } else {
+        if(typeof callback=="function") callback(arg);
+    }
+
 });
 };
 

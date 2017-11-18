@@ -43,21 +43,7 @@ module.exports.initDb = function (appPath, callback) {
 
     console.log("Application folder is:"+appPath);
 
-    if (fs.existsSync(appPath)) {
-        // Do something
-        try{
-            fs.accessSync(appPath+'/main.db', fs.R_OK | fs.W_OK)
-            console.log("Database file exists");
-        }catch(e){
-            fs.writeFileSync(appPath+'/main.db', '');
-            console.log("Create new database file");
-        }
-
-    } else {
-        fs.mkdir(appPath);
-        fs.writeFileSync(appPath+'/main.db', '');
-
-    }
+    initFileSystem(appPath);
 
     let dbPath = path.join(appPath, 'main.db')
     let createDb = function (dbPath) {
@@ -125,5 +111,29 @@ module.exports.saveFormData = function (tableName, keyValue, callback) {
                 SQL.dbClose(db, window.model.db)
             }
         }
+    }
+}
+
+function initFileSystem(appPath){
+    if (fs.existsSync(appPath)) {
+
+        // Database file initialization
+        try{
+            fs.accessSync(appPath+'/main.db', fs.R_OK | fs.W_OK)
+            console.log("Database file exists");
+        }catch(e){
+            fs.writeFileSync(appPath+'/main.db', '');
+            console.log("Create new database file");
+        }
+
+        if (!fs.existsSync(appPath+"/wallets")) {
+            fs.mkdir(appPath+"/wallets");
+        }
+
+    } else {
+        fs.mkdir(appPath);
+        fs.mkdir(appPath+"/wallets");
+        fs.writeFileSync(appPath+'/main.db', '');
+        console.log("Create new settings file");
     }
 }
