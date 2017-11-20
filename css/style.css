@@ -14,6 +14,10 @@ h1 {
     font-size: 42px;
     margin-bottom: 60px;
 }
+p {
+    line-height: 32px;
+    color: rgba(0,0,0,.5);
+}
 .wwl-dashboard {
     width: 270px;
     height: 100vh;
@@ -178,7 +182,7 @@ h1 {
     background: linear-gradient(45deg, #276fc6 0%,#2989d8 48%,#79b7e0 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#276fc6', endColorstr='#79b7e0',GradientType=1 );
     border: none !important;
-    border-radius: 26px;
+    border-radius: 6px;
     color: rgba(0,0,0, 0.55) !important;
     height: 32px !important;
     line-height: 32px !important;
@@ -195,7 +199,7 @@ h1 {
 .wwl-button {
     background: none;
     border: 1px solid rgba(0,0,0,.1);
-    border-radius: 26px;
+    border-radius: 6px;
     color: rgba(0,0,0, 0.55) !important;
     height: 32px !important;
     line-height: 32px !important;
@@ -219,6 +223,7 @@ body {
 #window_header {
     -webkit-app-region:drag;
     cursor: pointer;
+    background: rgba(0,0,0,.35);
 }
 
 
@@ -372,4 +377,7 @@ body {
 
 .windows-password-passed {
     color: seagreen;
+}
+.wwl-start-description {
+
 }
