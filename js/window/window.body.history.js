@@ -52,6 +52,8 @@ $Window.Body.History.Update = function(){
             if(keyA > keyB) return 1;
             return 0;
         });
+
+        $Window.Body.History.DrawTable();
     });
     //windows_page_history_list
 };
@@ -60,18 +62,32 @@ $Window.Body.History.ExtractTransfer = function(tr, status){
     var formatTime = moment.unix(tr.timestamp).format($Window.Body.History.timeFormat);
     var txidshort = tr.txid.substring(0, 4) + '..' + tr.txid.substring(tr.txid.length-4);
     var amountReadable = parseFloat(tr.amount)/1000000000000;
+    var feeReadable = parseFloat(tr.amount)/1000000000000;
 
     var transfer = Object.assign(
-        {"status":"pool", "formatTime":formatTime, "txidshort": txidshort, "amountReadable":amountReadable},
+        {   "status":status,
+            "formatTime":formatTime,
+            "txidshort": txidshort,
+            "amountReadable":amountReadable,
+            "feeReadable":feeReadable},
         tr);
     return transfer;
 };
 
 $Window.Body.History.DrawTable = function(){
+    $('#windows_page_history_list').html('');
     if($Window.Body.History.transfers.length>0){
-
+        var template  = $("#js_template_transfer").html();
         for(var i in $Window.Body.History.transfers){
+            var transfer = Mustache.render(template, $Window.Body.History.transfers[i]);
+            $('#windows_page_history_list').append(transfer);
 
+            $('#transfer_a_info_'+$Window.Body.History.transfers[i].txid).unbind();
+            $('#transfer_a_info_'+$Window.Body.History.transfers[i].txid).click(function(e){
+                e.preventDefault();
+                var txid = $(this).attr("data-tx");
+                $("#transfer_info_"+txid).toggle();
+            });
         }
     }
 };

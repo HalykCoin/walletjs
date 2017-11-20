@@ -35,6 +35,7 @@ $Window.Dashboard.Navigation.Init = function(){
     $("#window-dashboard_navigation").find("a").on('click', function(e){
         e.preventDefault();
         var option = $(this).attr('data-nav');
+
         $Window.Dashboard.Navigation.Show(option);
     });
 
@@ -42,6 +43,11 @@ $Window.Dashboard.Navigation.Init = function(){
 };
 
 $Window.Dashboard.Navigation.Show = function(option){
+
+    if(option=="history"){
+        $Window.Body.History.Init();
+    }
+
     $("#window-dashboard_navigation").find("a").removeClass("wwl-current");
     $("#window-dashboard_navigation").find("a[data-nav='"+option+"']").addClass("wwl-current");
 
