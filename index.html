@@ -395,9 +395,24 @@
 
     <script id="js_template_transfer" type="x-tmpl-mustache">
         <div class="wwl-transfer" id="transfer_{{txid}}">
+            <span class="wwl-transfer-status wwl-transfer-{{status}}"></span>
             <span class="wwl-transfer-time">{{formatTime}}</span>
-            <a href="#" class="" data-tx="{{txid}}">{{txidshort}}</a>
-            <span class="wwl-transfer-amount">{{formatTime}}</span>
+            <a href="#" data-tx="{{txid}}" id="transfer_a_info_{{txid}}">{{txidshort}}</a>
+            <span class="wwl-transfer-amount">{{amountReadable}}</span>
+            <div class="wwl-transfer-info" style="display:none" id="transfer_info_{{txid}}">
+                <div>
+                    TransferId: <a href="#">{{txid}}</a>
+                </div>
+                <div>
+                    PaymentId: <a href="#">{{payment_id}}</a>
+                </div>
+                <div>
+                    Сумма: <a href="#">{{amountReadable}}</a>
+                </div>
+                <div>
+                    Комиссия: <a href="#">{{feeReadable}}</a>
+                </div>
+            </div>
         </div>
     </script>
   </body>
