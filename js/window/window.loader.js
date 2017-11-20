@@ -47,22 +47,14 @@ $Window.Loader.Slider.Init = function(){
     });
 };
 
-
 $Window.Loader._progress = 1;
 $Window.Loader.update = function(args){
 
-/*    <span id="wallet_loading_process" style="display: none">
-    Loading...  <span id="wallet_loading_process_current" ></span > /
-    Loading...  <span id="wallet_loading_process_tagert" ></span > /
-
-    </span>
- var sync ={"sync_current":0, "sync_tagert":0 , "ready" : false}*/
-
     if(!args.ready){
         if(parseInt(args.sync_target) >0){
-            $Window.Loader.Splash.Hide();
             $Window.Controls.Show();
-            $Window.Loader.Show(0);
+            $Window.LayerShow("window_loader");
+            $Window.Loader.Show();
             $("#wallet_loading_process_current").text(args.sync_current);
             $("#wallet_loading_process_targert").text(args.sync_target);
 
@@ -73,11 +65,20 @@ $Window.Loader.update = function(args){
 
     } else {
         clearInterval(loaderJobber);
-        $Window.Dashboard.Show();
-        $Window.Body.Show();
-        $Window.Controls.Show();
-        $Window.Loader.Splash.Hide();
-        $Window.Loader.Hide();
+
+        $RPC.Api.rpcMainConsoleSend({method:"get_settings"}, function(res){
+            console.log(res);
+            if(res.wallet_name == ""){
+                $Window.LayerShow("window_new_wallet_password");
+                $Window.Password.Init();
+                $Window.Controls.Show();
+            } else {
+                $Window.Pin.Auth.Init();
+                $Window.Controls.Show();
+            }
+        });
+
+
     }
 };
 

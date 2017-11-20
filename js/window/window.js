@@ -45,6 +45,12 @@ $Window.Init = function(){
     });
 
 };
+
+$Window.LayerShow = function(layer_name){
+    $('.layout').hide();
+    $('#'+layer_name).show();
+};
+
 $Window.Controls = new Object();
 
 $Window.Controls.Show = function(){

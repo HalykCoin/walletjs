@@ -170,7 +170,20 @@ $RPC.Api.rpcDeamonConsoleSend = function(args, callback){
 };
 
 
-$
+$RPC.Api.rpcMainConsoleSend = function(args, callback){
+    var msg_id = +_getRandomPort(34);
+    ipcRenderer.send('async', {
+        "action" : "main-action",
+        "body" : args,
+        "msg_id" : msg_id
+    });
+
+    ipcRenderer.on('async-reply-'+msg_id, (event, arg) => {
+        if(typeof callback=="function") callback(arg);
+});
+};
+
+
 
 $RPC.Api.mainProcessSend = function(args, callback, onError){
     var msg_id = +_getRandomPort(34);

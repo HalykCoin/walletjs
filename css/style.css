@@ -163,6 +163,10 @@ h1 {
     margin-bottom: 15px;
 }
 
+.wwl-input-pin {
+    font-size :25px;
+}
+
 .wwl-input:focus {
     outline:none;
 }
@@ -317,6 +321,12 @@ body {
     float: left;
     padding-top: 5px;
 }
+
+.wwl-loader{
+    width: 100px;
+    height: 100px;
+}
+
 #loader-news-slider {
     padding: 0;
     margin: 0;
@@ -349,4 +359,17 @@ body {
 }
 #wallet_loading_process_bar_label {
     color: rgba(0,0,0,.5);
+}
+
+.wwl-password-checks {
+    font-size: 14px;
+    padding: 10px;
+}
+
+.windows-password-fail {
+    color: indianred;
+}
+
+.windows-password-passed {
+    color: seagreen;
 }

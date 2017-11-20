@@ -34,7 +34,6 @@ application.api.query = function(app, module, action, data, onSuccess, onFailure
         type: "POST",
         url: application.api.url + "/api20/resource/"+app+"/"+module+"."+action+"",
         crossDomain: true,
-        dataType: 'jsonp',
         async: true,
         data: r_data,
         success: function(data){

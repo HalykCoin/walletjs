@@ -22,115 +22,204 @@
       <script src="./js/window/window.dashboard.js" charset="utf-8"></script>
       <script src="./js/window/woololo.api.js" charset="utf-8"></script>
       <script src="./js/window/rpc.api.js" charset="utf-8"></script>
-
+      <script src="./js/window/window.password.js" charset="utf-8"></script>
+      <script src="./js/window/window.pin.js" charset="utf-8"></script>
 
   </head>
   <body>
-    <div id="window_header" style="display: none">
+    <div class="header" id="window_header" style="display: none">
         This is window handler. Just grab me and drop somewhere.
     </div>
-    <div id="window_controls"  style="display: none">
+    <div class="header" id="window_controls"  style="display: none">
         <a href="#" id="window_close">Close window</a>
         <a href="#" id="window_minimize">Hide window</a>
     </div>
 
-
-    <div class="wwl-dashboard" id="window_dashboard" style="display: none">
-        <div class="wwl-balance">
-            <div class="wwl-brand">
-                <img src="images/web/halykcoin-logo.svg">
-                <div class="wwl-logo-name">
-                    halykcoin
-                </div>
-            </div>
-            <div class="wwl-balance-balance">
-
-                <div class="wwl-balance-text">
-                    Баланс:
-                </div>
-                <div class="wwl-balance-sum wwl-balance-sum-special">
-                    34.50434005030
-                </div>
-            </div>
-            <div class="wwl-balance-available">
-                <div class="wwl-balance-text">
-                    Доступно:
-                </div>
-                <div class="wwl-balance-sum">
-                    19.50534052030
-                </div>
-            </div>
-        </div>
-        <div class="wwl-nav">
-            <ul>
-                <li>
-                    <a href="index.html">История</a>
-                </li>
-                <li>
-                    <a href="index.html">Отправить</a>
-                </li>
-                <li>
-                    <a class="wwl-current" href="index.html">Получить</a>
-                </li>
-                <li>
-                    <a href="index.html">Дополнительно</a>
-                </li>
-                <li>
-                    <a href="index.html">Настройки</a>
-                </li>
-            </ul>
-        </div>
-        <div class="wwl-sync">
-
-        </div>
-    </div>
-    <div  id="window_body" style="display:none" class="wwl-page">
-        <div>
-            <div class="wwl-container">
-                <h1>
-                    Получить
-                </h1>
-                <div class="wwl-row">
-                    <div class="wwl-field">Адрес получателя:</div>
-                    <div class="wwl-input-container">
-                        <input class="wwl-input">
+    <div class="layout" id="window_body" style="display: none">
+        <div class="wwl-dashboard" id="window_dashboard" >
+            <div class="wwl-balance">
+                <div class="wwl-brand">
+                    <img src="images/web/halykcoin-logo.svg">
+                    <div class="wwl-logo-name">
+                        halykcoin
                     </div>
                 </div>
-                <div class="wwl-row">
-                    <div class="wwl-field">ID платежа:</div>
-                    <div class="wwl-input-container">
-                        <input class="wwl-input">
+                <div class="wwl-balance-balance">
+
+                    <div class="wwl-balance-text">
+                        Баланс:
                     </div>
-                    <a href="index.html" class="wwl-button-primary">
-                        Сгенерировать
-                    </a>
-                    <a href="index.html" class="wwl-button">
-                        Очистить
-                    </a>
-                </div>
-                <div class="wwl-row">
-                    <div class="wwl-field">Интегрированный адрес:</div>
-                    <div class="wwl-input-container">
-                        <input class="wwl-input">
+                    <div class="wwl-balance-sum wwl-balance-sum-special">
+                        34.50434005030
                     </div>
                 </div>
-                <div class="wwl-row">
-                    <div class="wwl-field">Сумма:</div>
-                    <div class="wwl-input-container">
-                        <input class="wwl-input">
+                <div class="wwl-balance-available">
+                    <div class="wwl-balance-text">
+                        Доступно:
+                    </div>
+                    <div class="wwl-balance-sum">
+                        19.50534052030
                     </div>
                 </div>
             </div>
-        </div>
-        <div>
+            <div class="wwl-nav">
+                <ul>
+                    <li>
+                        <a href="index.html">История</a>
+                    </li>
+                    <li>
+                        <a href="index.html">Отправить</a>
+                    </li>
+                    <li>
+                        <a class="wwl-current" href="index.html">Получить</a>
+                    </li>
+                    <li>
+                        <a href="index.html">Дополнительно</a>
+                    </li>
+                    <li>
+                        <a href="index.html">Настройки</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="wwl-sync">
 
+            </div>
         </div>
-        <div>
-
+        <div  class="wwl-page">
+            <div>
+                <div class="wwl-container">
+                    <h1>
+                        Получить
+                    </h1>
+                    <div class="wwl-row">
+                        <div class="wwl-field">Адрес получателя:</div>
+                        <div class="wwl-input-container">
+                            <input class="wwl-input">
+                        </div>
+                    </div>
+                    <div class="wwl-row">
+                        <div class="wwl-field">ID платежа:</div>
+                        <div class="wwl-input-container">
+                            <input class="wwl-input">
+                        </div>
+                        <a href="index.html" class="wwl-button-primary">
+                            Сгенерировать
+                        </a>
+                        <a href="index.html" class="wwl-button">
+                            Очистить
+                        </a>
+                    </div>
+                    <div class="wwl-row">
+                        <div class="wwl-field">Интегрированный адрес:</div>
+                        <div class="wwl-input-container">
+                            <input class="wwl-input">
+                        </div>
+                    </div>
+                    <div class="wwl-row">
+                        <div class="wwl-field">Сумма:</div>
+                        <div class="wwl-input-container">
+                            <input class="wwl-input">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div id="window_splash">
+    <div class="layout" id="window_new_wallet_password" style="display: none;">
+        <div class="wwl-container">
+            <h1>
+                Регистрация нового кошелька
+            </h1>
+            <div class="wwl-row">
+                <p>Для обеспечения безопасности и ограничению доступа к вашим данным, вам необходимо
+                ввести пароль. Даже если файлы вашего кошелька попадут в руки злоумышленников, данные будут надежно
+                защищены паролем, что сделает практически навозможным доступ к вашим деньгам.</p>
+
+                <p>
+                    Вам не нужно будет каждый раз вводить этот сложный пароль. Для вашего комфорта, мы далее предложим вам кое-что попроще.
+                </p>
+
+                <br>
+            </div>
+
+            <div class="wwl-row">
+                <div class="wwl-field">Пароль:</div>
+                <div class="wwl-input-container">
+                    <input class="wwl-input" id="window_password_plain" type="password">
+                </div>
+            </div>
+            <div class="wwl-row">
+                <div class="wwl-field">Пароль еще раз:</div>
+                <div class="wwl-input-container">
+                    <input class="wwl-input" id="window_password_plain_repeat" type="password">
+                </div>
+            </div>
+            <div class='wwl-password-checks'>
+                <div id="window_password_check_lower">Строчные буквы латинского алфавита</div>
+                <div id="window_password_check_upper">Заглавные буквы латинского алфавита</div>
+                <div id="window_password_check_numeral">Число</div>
+                <div id="window_password_check_length">Пароль должен соостоять минимум из 6-ти символов</div>
+                <div id="window_password_check_match">Пароли должны совпадать</div>
+            </div>
+            <a href="#" id="window_password_create" class="wwl-button-primary">
+                Далее
+            </a>
+        </div>
+    </div>
+
+    <div class="layout" id="window_new_wallet_pin" style="display: none;">
+        <div class="wwl-container">
+            <h1>
+                Введите PIN-код для быстрого доступа к вашему кошельку
+            </h1>
+            <div class="wwl-row">
+                <p>
+                    И так, мы уже защитили ваш новый кошелек паролем, но каждый раз вводить сложный пароль это - не совсем удобно.
+                    Поэтому, мы создаем PIN-код для быстрого доступа к вашему кошельку.
+                </p>
+            </div>
+            <div class="wwl-row">
+                <div class="wwl-field">PIN-код:</div>
+                <div class="wwl-input-container">
+                    <input class="wwl-input" id="window_pin_plain" type="password">
+                </div>
+            </div>
+            <div class="wwl-row">
+                <div class="wwl-field">Введите PIN-код еще раз:</div>
+                <div class="wwl-input-container">
+                    <input class="wwl-input" id="window_pin_plain_repeat" type="password">
+                </div>
+            </div>
+            <div class='wwl-password-checks'>
+                <div id="window_pin_check_numeral">Только числа</div>
+                <div id="window_pin_check_length">PIN-код  должен соостоять минимум из 4-х символов</div>
+                <div id="window_pin_check_match">PIN-коды должны совпадать</div>
+            </div>
+            <a href="#" id="window_pin_create" class="wwl-button-primary">
+                Далее
+            </a>
+        </div>
+    </div>
+
+    <div class="layout" id="window_auth_wallet_pin" style="display: none;">
+        <div class="wwl-container">
+            <h1>
+                Введите PIN-код
+            </h1>
+
+            <div class="wwl-row">
+                <div class="wwl-field">PIN-код:</div>
+                <div class="wwl-input-container">
+                    <input class="wwl-input-pin" id="window_auth_pin_plain" type="password">
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="layout" id="window_splash">
         <div class="wwl-splash-brand">
             <img src="images/web/halykcoin-logo.svg">
             <div class="wwl-splash-logo-name">
@@ -140,12 +229,12 @@
                 Copyright (c) 2017 The Halykcoin Project.<br>
                 Portions Copyright (c) 2014-2017 The Monero Project.<br>
                 Portions Copyright (c) 2012-2013 The Cryptonote developers.<br>
-
+                <img src="./images/loader.svg" class="wwl-loader">
             </div>
         </div>
     </div>
 
-    <div id="window_loader"  class="wwl-page" style="display:none">
+    <div class="layout" id="window_loader"  class="wwl-page" style="display:none">
             <div class="loader-news" id="loader-news" style="display: none">
 
             </div>
@@ -158,14 +247,6 @@
             </div>
     </div>
 
-    <!--<div id="window_app" style="display:none">
-        We are using Node.js <script>document.write(process.versions.node)</script>,
-        Chromium <script>document.write(process.versions.chrome)</script>,
-        and Electron <script>document.write(process.versions.electron)</script>.
-
-        <input type="text" id="wallet_create_name"/>
-        <a href="#" id="wallet_create_submit">Create a wallet</a>
-    </div> -->
 
 
     <script>

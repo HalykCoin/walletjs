@@ -53,7 +53,7 @@ function initFileSystem(appPath){
         }
     } else {
         fs.mkdir(appPath);
-        fs.writeFileSync(appPath+'/settings.json', JSON.stringify(setting_default));
+        fs.writeFileSync(appPath+'/settings.json', JSON.stringify(_setting_default));
         console.log("Create new settings file");
     }
 }
