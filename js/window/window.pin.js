@@ -87,7 +87,7 @@ $Window.Pin.Auth.Init = function(){
                     $('#window_auth_pin_plain').val('');
                 } else {
                     $("#window_auth_pin").removeAttr("disabled");
-                    $Window.LayerShow("window_body");
+                    $Window.Body.Init();
                 }
 
             }, function(res){
