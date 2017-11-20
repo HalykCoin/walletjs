@@ -48,6 +48,14 @@ $Window.Dashboard.Navigation.Show = function(option){
         $Window.Body.History.Init();
     }
 
+    if(option=="receive"){
+        $Window.Body.Recieive.Init();
+    }
+
+    if(option=="send"){
+        $Window.Body.Send.Init();
+    }
+
     $("#window-dashboard_navigation").find("a").removeClass("wwl-current");
     $("#window-dashboard_navigation").find("a[data-nav='"+option+"']").addClass("wwl-current");
 

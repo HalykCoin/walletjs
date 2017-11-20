@@ -373,3 +373,13 @@ body {
 .windows-password-passed {
     color: seagreen;
 }
+
+.wll-recieve-address{
+    font-size: 20px;
+    text-align: center;
+    color: slategray;
+}
+
+#window_page_recieve_qr{
+    width: 250px;
+}

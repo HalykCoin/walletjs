@@ -20,6 +20,8 @@
       <script src="./js/window/window.loader.js" charset="utf-8"></script>
       <script src="./js/window/window.body.js" charset="utf-8"></script>
       <script src="./js/window/window.body.history.js" charset="utf-8"></script>
+      <script src="./js/window/window.body.receive.js" charset="utf-8"></script>
+      <script src="./js/window/window.body.send.js" charset="utf-8"></script>
       <script src="./js/window/window.dashboard.js" charset="utf-8"></script>
       <script src="./js/window/woololo.api.js" charset="utf-8"></script>
       <script src="./js/window/rpc.api.js" charset="utf-8"></script>
@@ -92,6 +94,7 @@
                     <h1>
                         История платежей
                     </h1>
+
                     <div class="wwl-row" id="windows_page_history_list">
 
                     </div>
@@ -105,32 +108,38 @@
                     <div class="wwl-row">
                         <div class="wwl-field">Адрес получателя:</div>
                         <div class="wwl-input-container">
-                            <input class="wwl-input">
+                            <input class="wwl-input"  id="window_page_send_address">
                         </div>
                     </div>
                     <div class="wwl-row">
                         <div class="wwl-field">ID платежа:</div>
                         <div class="wwl-input-container">
-                            <input class="wwl-input">
+                            <input class="wwl-input" id="window_page_send_id">
                         </div>
-                        <a href="index.html" class="wwl-button-primary">
+                        <a href="#" class="wwl-button-primary" id="window_page_send_id_generate">
                             Сгенерировать
                         </a>
-                        <a href="index.html" class="wwl-button">
+                        <a href="#" class="wwl-button" id="window_page_send_id_clear">
                             Очистить
                         </a>
                     </div>
-                    <div class="wwl-row">
+                    <!-- <div class="wwl-row">
                         <div class="wwl-field">Интегрированный адрес:</div>
                         <div class="wwl-input-container">
                             <input class="wwl-input">
                         </div>
-                    </div>
+                    </div> -->
                     <div class="wwl-row">
                         <div class="wwl-field">Сумма:</div>
                         <div class="wwl-input-container">
-                            <input class="wwl-input">
+                            <input class="wwl-input" id="window_page_send_amount">
                         </div>
+                    </div>
+
+                    <div class="wwl-row">
+                        <a href="#" class="wwl-button-primary" id="window_page_send_button">
+                            Отправить
+                        </a>
                     </div>
                 </div>
             </div>
@@ -140,34 +149,31 @@
                         Получить
                     </h1>
                     <div class="wwl-row">
-                        <div class="wwl-field">Адрес получателя:</div>
-                        <div class="wwl-input-container">
-                            <input class="wwl-input">
+                        <div class="wll-recieve-address" id="window_page_receive_address">
+
                         </div>
                     </div>
                     <div class="wwl-row">
                         <div class="wwl-field">ID платежа:</div>
                         <div class="wwl-input-container">
-                            <input class="wwl-input">
+                            <input class="wwl-input" id="window_page_receive_id">
                         </div>
-                        <a href="index.html" class="wwl-button-primary">
+                        <a href="#" class="wwl-button-primary" id="window_page_receive_id_generate">
                             Сгенерировать
                         </a>
-                        <a href="index.html" class="wwl-button">
+                        <a href="#" class="wwl-button" id="window_page_receive_id_clear">
                             Очистить
                         </a>
                     </div>
                     <div class="wwl-row">
-                        <div class="wwl-field">Интегрированный адрес:</div>
-                        <div class="wwl-input-container">
-                            <input class="wwl-input">
-                        </div>
-                    </div>
-                    <div class="wwl-row">
                         <div class="wwl-field">Сумма:</div>
                         <div class="wwl-input-container">
-                            <input class="wwl-input">
+                            <input class="wwl-input" id="window_page_receive_amount">
                         </div>
+                    </div>
+
+                    <div class="wwl-row">
+                        <img src="#" id="window_page_receive_qr">
                     </div>
                 </div>
             </div>
@@ -369,8 +375,6 @@
             </div>
     </div>
 
-
-
     <script>
       // You can also require other files to run in this process
       require('./renderer.js')
@@ -395,7 +399,7 @@
 
     <script id="js_template_transfer" type="x-tmpl-mustache">
         <div class="wwl-transfer" id="transfer_{{txid}}">
-            <span class="wwl-transfer-status wwl-transfer-{{status}}"></span>
+            <span class="wwl-transfer-status wwl-transfer-{{status}}">{{status}}</span>
             <span class="wwl-transfer-time">{{formatTime}}</span>
             <a href="#" data-tx="{{txid}}" id="transfer_a_info_{{txid}}">{{txidshort}}</a>
             <span class="wwl-transfer-amount">{{amountReadable}}</span>
