@@ -23,8 +23,8 @@ $Window.Body.Recieive.Init = function(){
         $Window.Body.Recieive.UpdateQR();
     });
 
-    $("#window_page_recieve_id, #window_page_recieve_amount").unbind();
-    $("#window_page_recieve_id, #window_page_recieve_amount").on("keyup change", function(){
+    $("#window_page_recieve_id, #window_page_receive_amount").unbind();
+    $("#window_page_recieve_id, #window_page_receive_amount").on("keyup change", function(){
         $Window.Body.Recieive.UpdateQR();
     });
 
