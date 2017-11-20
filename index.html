@@ -30,10 +30,9 @@
 
   </head>
   <body>
-    <div class="header" id="window_header" style="display: none">
-        This is window handler. Just grab me and drop somewhere.
+    <div class="header" id="window_header" style="display: block">
     </div>
-    <div class="header" id="window_controls"  style="display: none">
+    <div class="header" id="window_controls"  style="display: block">
         <a href="#" id="window_close" class="wwl-close"></a>
         <a href="#" id="window_minimize" class="wwl-hide"></a>
     </div>
@@ -259,17 +258,7 @@
             <h1>
                 Регистрация нового кошелька
             </h1>
-            <div class="wwl-row">
-                <p>Для обеспечения безопасности и ограничению доступа к вашим данным, вам необходимо
-                ввести пароль. Даже если файлы вашего кошелька попадут в руки злоумышленников, данные будут надежно
-                защищены паролем, что сделает практически навозможным доступ к вашим деньгам.</p>
 
-                <p>
-                    Вам не нужно будет каждый раз вводить этот сложный пароль. Для вашего комфорта, мы далее предложим вам кое-что попроще.
-                </p>
-
-                <br>
-            </div>
 
             <div class="wwl-row">
                 <div class="wwl-field">Пароль:</div>
@@ -289,6 +278,17 @@
                 <div id="window_password_check_numeral">Число</div>
                 <div id="window_password_check_length">Пароль должен соостоять минимум из 6-ти символов</div>
                 <div id="window_password_check_match">Пароли должны совпадать</div>
+            </div>
+            <div class="wwl-row">
+                <p>Для обеспечения безопасности и ограничению доступа к вашим данным, вам необходимо
+                    ввести пароль. Даже если файлы вашего кошелька попадут в руки злоумышленников, данные будут надежно
+                    защищены паролем, что сделает практически навозможным доступ к вашим деньгам.</p>
+
+                <p>
+                    Вам не нужно будет каждый раз вводить этот сложный пароль. Для вашего комфорта, мы далее предложим вам кое-что попроще.
+                </p>
+
+                <br>
             </div>
             <a href="#" id="window_password_create" class="wwl-button-primary">
                 Далее
@@ -339,7 +339,7 @@
             <div class="wwl-row">
                 <div class="wwl-field">PIN-код:</div>
                 <div class="wwl-input-container">
-                    <input class="wwl-input-pin" id="window_auth_pin_plain" type="password">
+                    <input class="wwl-input wwl-input-pin" id="window_auth_pin_plain" type="password">
                 </div>
             </div>
 
