@@ -136,7 +136,23 @@ $RPC.Api.ShowKey = function( onSuccess, onError){
     $RPC.Api.rpcWalletSend(postData, onSuccess, onError);
 };
 
+$RPC.Api.RescanSpent = function( onSuccess, onError){
+    const postData = {"method":"rescan_spent",
+        "params":{}
+    };
+    $RPC.Api.rpcWalletSend(postData, onSuccess, onError);
+};
 
+$RPC.Api.GetHeight = function( onSuccess, onError){
+    const postData = {"method":"getheight",
+        "params":{}
+    };
+    $RPC.Api.rpcWalletSend(postData, onSuccess, onError);
+};
+
+
+
+//RPC API core methods
 $RPC.Api.rpcWalletSend = function(args, callback, onError){
     var msg_id = +_getRandomPort(34);
     ipcRenderer.send('async', {
@@ -169,7 +185,6 @@ $RPC.Api.rpcDeamonConsoleSend = function(args, callback){
 });
 };
 
-
 $RPC.Api.rpcMainConsoleSend = function(args, callback){
     var msg_id = +_getRandomPort(34);
     ipcRenderer.send('async', {
@@ -182,8 +197,6 @@ $RPC.Api.rpcMainConsoleSend = function(args, callback){
         if(typeof callback=="function") callback(arg);
 });
 };
-
-
 
 $RPC.Api.mainProcessSend = function(args, callback, onError){
     var msg_id = +_getRandomPort(34);

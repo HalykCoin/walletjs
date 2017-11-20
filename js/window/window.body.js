@@ -7,7 +7,25 @@
 
 $Window.Body = new Object();
 
-$Window.Body.Init = function(){};
+$Window.Body.Init = function(){
+    $("#window_splash_copy").hide();
+    $Window.Controls.Hide();
+    $Window.LayerShow("window_splash");
+
+    var _checkHeight = function(){
+        $RPC.Api.GetHeight(function(res){
+           if(res.result.height>1){
+               clearInterval(loaderJobber);
+               $Window.LayerShow("window_body");
+               $Window.Controls.Show();
+               $Window.Dashboard.Init();
+           }
+        });
+    };
+
+    console.log("$Window.Body.Init");
+    loaderJobber = setInterval(_checkHeight, 500);
+};
 
 $Window.Body.Show = function(){
     $("#window_body").show();

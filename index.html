@@ -19,6 +19,7 @@
       <script src="./js/window/window.qr.js" charset="utf-8"></script>
       <script src="./js/window/window.loader.js" charset="utf-8"></script>
       <script src="./js/window/window.body.js" charset="utf-8"></script>
+      <script src="./js/window/window.body.history.js" charset="utf-8"></script>
       <script src="./js/window/window.dashboard.js" charset="utf-8"></script>
       <script src="./js/window/woololo.api.js" charset="utf-8"></script>
       <script src="./js/window/rpc.api.js" charset="utf-8"></script>
@@ -31,8 +32,8 @@
         This is window handler. Just grab me and drop somewhere.
     </div>
     <div class="header" id="window_controls"  style="display: none">
-        <a href="#" id="window_close">Close window</a>
-        <a href="#" id="window_minimize">Hide window</a>
+        <a href="#" id="window_close" class="wwl-close"></a>
+        <a href="#" id="window_minimize" class="wwl-hide"></a>
     </div>
 
     <div class="layout" id="window_body" style="display: none">
@@ -49,35 +50,35 @@
                     <div class="wwl-balance-text">
                         Баланс:
                     </div>
-                    <div class="wwl-balance-sum wwl-balance-sum-special">
-                        34.50434005030
+                    <div class="wwl-balance-sum wwl-balance-sum-special" id="window_dashboard_balance">
+                        0.000000000000
                     </div>
                 </div>
                 <div class="wwl-balance-available">
                     <div class="wwl-balance-text">
                         Доступно:
                     </div>
-                    <div class="wwl-balance-sum">
-                        19.50534052030
+                    <div class="wwl-balance-sum" id="window_dashboard_unlocked">
+                        0.000000000000
                     </div>
                 </div>
             </div>
             <div class="wwl-nav">
-                <ul>
+                <ul id="window-dashboard_navigation">
                     <li>
-                        <a href="index.html">История</a>
+                        <a href="#" class="wwl-current" data-nav="history">История</a>
                     </li>
                     <li>
-                        <a href="index.html">Отправить</a>
+                        <a href="#" data-nav="send">Отправить</a>
                     </li>
                     <li>
-                        <a class="wwl-current" href="index.html">Получить</a>
+                        <a href="#" data-nav="receive">Получить</a>
                     </li>
                     <li>
-                        <a href="index.html">Дополнительно</a>
+                        <a href="#" data-nav="settings">Настройки</a>
                     </li>
                     <li>
-                        <a href="index.html">Настройки</a>
+                        <a href="#" data-nav="additional">О продукте</a>
                     </li>
                 </ul>
             </div>
@@ -86,10 +87,131 @@
             </div>
         </div>
         <div  class="wwl-page">
-            <div>
+            <div class="wwl-page-layout" id="window_page_history" style="display:none">
+                <div class="wwl-container">
+                    <h1>
+                        История платежей
+                    </h1>
+                    <div class="wwl-row" id="windows_page_history_list">
+
+                    </div>
+                </div>
+            </div>
+            <div class="wwl-page-layout" id="window_page_send" style="display:none">
+                <div class="wwl-container">
+                    <h1>
+                        Отправить
+                    </h1>
+                    <div class="wwl-row">
+                        <div class="wwl-field">Адрес получателя:</div>
+                        <div class="wwl-input-container">
+                            <input class="wwl-input">
+                        </div>
+                    </div>
+                    <div class="wwl-row">
+                        <div class="wwl-field">ID платежа:</div>
+                        <div class="wwl-input-container">
+                            <input class="wwl-input">
+                        </div>
+                        <a href="index.html" class="wwl-button-primary">
+                            Сгенерировать
+                        </a>
+                        <a href="index.html" class="wwl-button">
+                            Очистить
+                        </a>
+                    </div>
+                    <div class="wwl-row">
+                        <div class="wwl-field">Интегрированный адрес:</div>
+                        <div class="wwl-input-container">
+                            <input class="wwl-input">
+                        </div>
+                    </div>
+                    <div class="wwl-row">
+                        <div class="wwl-field">Сумма:</div>
+                        <div class="wwl-input-container">
+                            <input class="wwl-input">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="wwl-page-layout" id="window_page_receive" style="display:none">
                 <div class="wwl-container">
                     <h1>
                         Получить
+                    </h1>
+                    <div class="wwl-row">
+                        <div class="wwl-field">Адрес получателя:</div>
+                        <div class="wwl-input-container">
+                            <input class="wwl-input">
+                        </div>
+                    </div>
+                    <div class="wwl-row">
+                        <div class="wwl-field">ID платежа:</div>
+                        <div class="wwl-input-container">
+                            <input class="wwl-input">
+                        </div>
+                        <a href="index.html" class="wwl-button-primary">
+                            Сгенерировать
+                        </a>
+                        <a href="index.html" class="wwl-button">
+                            Очистить
+                        </a>
+                    </div>
+                    <div class="wwl-row">
+                        <div class="wwl-field">Интегрированный адрес:</div>
+                        <div class="wwl-input-container">
+                            <input class="wwl-input">
+                        </div>
+                    </div>
+                    <div class="wwl-row">
+                        <div class="wwl-field">Сумма:</div>
+                        <div class="wwl-input-container">
+                            <input class="wwl-input">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="wwl-page-layout" id="window_page_settings" style="display:none">
+                <div class="wwl-container">
+                    <h1>
+                        Настройки
+                    </h1>
+                    <div class="wwl-row">
+                        <div class="wwl-field">Адрес получателя:</div>
+                        <div class="wwl-input-container">
+                            <input class="wwl-input">
+                        </div>
+                    </div>
+                    <div class="wwl-row">
+                        <div class="wwl-field">ID платежа:</div>
+                        <div class="wwl-input-container">
+                            <input class="wwl-input">
+                        </div>
+                        <a href="index.html" class="wwl-button-primary">
+                            Сгенерировать
+                        </a>
+                        <a href="index.html" class="wwl-button">
+                            Очистить
+                        </a>
+                    </div>
+                    <div class="wwl-row">
+                        <div class="wwl-field">Интегрированный адрес:</div>
+                        <div class="wwl-input-container">
+                            <input class="wwl-input">
+                        </div>
+                    </div>
+                    <div class="wwl-row">
+                        <div class="wwl-field">Сумма:</div>
+                        <div class="wwl-input-container">
+                            <input class="wwl-input">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="wwl-page-layout" id="window_page_about" style="display:none">
+                <div class="wwl-container">
+                    <h1>
+                        О продукте
                     </h1>
                     <div class="wwl-row">
                         <div class="wwl-field">Адрес получателя:</div>
@@ -225,12 +347,12 @@
             <div class="wwl-splash-logo-name">
                 halykcoin
             </div>
-            <div class="copy">
+            <div id="window_splash_copy" class="copy">
                 Copyright (c) 2017 The Halykcoin Project.<br>
                 Portions Copyright (c) 2014-2017 The Monero Project.<br>
                 Portions Copyright (c) 2012-2013 The Cryptonote developers.<br>
-                <img src="./images/loader.svg" class="wwl-loader">
             </div>
+            <img src="./images/loader.svg" class="wwl-loader">
         </div>
     </div>
 
@@ -270,5 +392,13 @@
           {{/data}}
       </ul>
   </script>
+
+    <script id="js_template_transfer" type="x-tmpl-mustache">
+        <div class="wwl-transfer" id="transfer_{{txid}}">
+            <span class="wwl-transfer-time">{{formatTime}}</span>
+            <a href="#" class="" data-tx="{{txid}}">{{txidshort}}</a>
+            <span class="wwl-transfer-amount">{{formatTime}}</span>
+        </div>
+    </script>
   </body>
 </html>
