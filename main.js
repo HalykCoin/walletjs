@@ -131,7 +131,15 @@ ipcMain.on('async', (event, arg) => {
     if(typeof(arg.action) != "undefined"){
         if(arg.action == "rpc-wallet" && typeof arg.body =="object"){
             rpc.request(arg.body, function(resp){
-                var responce =JSON.parse(resp);
+
+                var responce = null;
+                try {
+                    responce =JSON.parse(resp);
+                }
+                catch (e) {
+                    event.sender.send('async-reply-'+arg.msg_id, {"error":{"message":"JSON parse error"}});
+                }
+
                 responce['request'] = arg.body;
                 console.log(responce);
                 event.sender.send('async-reply-'+arg.msg_id, responce);
