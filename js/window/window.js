@@ -14,6 +14,7 @@ var loaderJobber = null;
 $(document).ready(function(){
     $Window.Init();
     $Window.Loader.Init();
+    $Window.Notify.Init();
 
     $("#wallet_create_submit").click(function(){
         var wallet_name = $('#wallet_create_name').val();

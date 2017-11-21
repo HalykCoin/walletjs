@@ -428,6 +428,7 @@ body {
     padding: 10px 20px;
 
     background: rgba(62, 62, 62, 1);
+    cursor: pointer;
 
 }
 .wwl-notification-message {

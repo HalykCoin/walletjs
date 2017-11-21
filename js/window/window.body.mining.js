@@ -25,13 +25,20 @@ $Window.Body.Mining.Init = function(){
     $('#window_mining_start').click(function(e){
         e.preventDefault();
         var threads = parseInt($("#windows_mining_threads option:selected").val());
-        $RPC.Api.StartMining(threads);
+        $RPC.Api.StartMining(threads, function(){
+            $Window.Notify.Add($Window.GetVar('mining_started'), 'info', 10000);
+        },
+        function(){
+            $Window.Notify.Add($Window.GetVar('mining_start_error'), 'error', 10000);
+        });
     });
 
     $('#window_mining_stop').unbind();
     $('#window_mining_stop').click(function(e){
         e.preventDefault();
-        $RPC.Api.StopMining();
+        $RPC.Api.StopMining(function(){
+            $Window.Notify.Add($Window.GetVar('mining_stop'), 'info', 10000);
+        });
     });
 };
 
