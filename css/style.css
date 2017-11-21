@@ -199,6 +199,11 @@ p {
     font-size: 14px;
     font-weight: 100;
     margin-right: 20px;
+    transition: all 0.1s linear 0s;
+}
+.wwl-button-primary:hover {
+    background: #1a5eb1;
+    transition: all 0.1s linear 0s;
 }
 .wwl-button {
     background: none;
@@ -215,9 +220,13 @@ p {
     width: auto;
     font-size: 14px;
     margin-right: 20px;
+    transition: all 0.1s linear 0s;
 }
 
-
+.wwl-button:hover {
+    background: rgba(0,0,0,.1);
+    transition: all 0.1s linear 0s;
+}
 
 body {
     background-color: #ecdcae;
@@ -228,7 +237,7 @@ body {
     -webkit-app-region:drag;
     background: rgba(0,0,0,.03);
     height: 24px;
-    width: 100%;
+    width: 1050px;
     z-index: 9;
 }
 #window_controls {
@@ -518,12 +527,12 @@ body {
     height: 20px;
     float: left;
 }
-.wwl-transfer-in {
+.wwl-transfer-in .wwl-transfer-status {
     background-image: url("../images/web/halykcoin-in.svg");
 }
-.wwl-transfer-out {
+.wwl-transfer-out .wwl-transfer-status {
     background-image: url("../images/web/halykcoin-out.svg");
 }
-.wwl-transfer-pool, .wwl-transfer-pending{
+.wwl-transfer-pool .wwl-transfer-status, .wwl-transfer-pending .wwl-transfer-status{
     background-image: url("../images/web/halykcoin-pool.svg");
 }
