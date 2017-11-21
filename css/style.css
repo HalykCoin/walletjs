@@ -234,11 +234,16 @@ body {
 }
 
 #window_header {
-    -webkit-app-region:drag;
+    -webkit-app-region: drag;
     background: rgba(0,0,0,.03);
     height: 24px;
     width: 1050px;
     z-index: 9;
+    text-align: center;
+    font-size: 14px;
+    padding-top: 3px;
+    box-sizing: border-box;
+    color: rgba(0,0,0,.7);
 }
 #window_controls {
     position: fixed;
