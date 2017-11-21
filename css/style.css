@@ -434,4 +434,28 @@ body {
 .wwl-notification-message {
     color: rgba(255,255,255,1);
     font-size: 12px;
+    float: left;
+}
+.wwl-notification-cancel {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    background-image: url("../images/web/halykcoin-close-white.svg");
+    background-size: cover;
+    background-position: 50% 50%;
+    opacity: .6;
+    width: 7px;
+    height: 7px;
+}
+.wwl-notification-icon {
+    background-image: url("../images/web/halykcoin-close-white.svg");
+    background-size: cover;
+    background-position: 50% 50%;
+    opacity: .6;
+    width: 30px;
+    height: 30px;
+    float: left;
+}
+.wwl-notification-okay {
+
 }
