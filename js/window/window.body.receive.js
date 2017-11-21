@@ -13,11 +13,16 @@ $Window.Body.Recieive.Init = function(){
     $RPC.Api.GetAddress(function(res){
         $Window.Body.Recieive.address = res.result.address;
         
-        var chunks_array = res.result.address.match(/.{1,4}/g);
+        var chunks_array = res.result.address.match(/.{1,5}/g);
         var chunks = '';
         for(var i in chunks_array){
-            chunks += chunks_array[i] + ' ';
+            chunks += '<span>' + chunks_array[i] + '</span> ';
+            if(i==9 || i==20 )
+                chunks += "<br/>";
         }
+
+
+        $('#window_page_receive_address').attr("data-clipboard", res.result.address);
 
         $('#window_page_receive_address').html(chunks);
         $Window.Body.Recieive.UpdateQR();
@@ -42,13 +47,14 @@ $Window.Body.Recieive.Init = function(){
         $Window.Body.Recieive.UpdateQR();
     });
 
-    $('#window_page_receive_address').unbind();
+
+    /*$('#window_page_receive_address').unbind();
     $('#window_page_receive_address').click(function(){
         const {clipboard} = require('electron');
         var content = $Window.Body.Recieive.address;
         clipboard.writeText(content);
         $Window.Notify.Add($Window.GetVar('clipboard'), 'ok', 5000);
-    });
+    }); */
 
 };
 

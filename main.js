@@ -58,6 +58,7 @@ var contextMenu = Menu.buildFromTemplate([
     { label: 'Quit', click:  function(){
         application.isQuiting = true;
         application.quit();
+
     } }
 ]);
 

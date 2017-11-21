@@ -45,6 +45,15 @@ $Window.Init = function(){
         window.minimize();
     });
 
+    $('body').on('click', 'a', function (event) {
+        var clipboard_data = $(this).attr("data-clipboard");
+        if (typeof(clipboard_data) != "undefined") {
+            const {clipboard} = require('electron');
+            clipboard.writeText(clipboard_data);
+            $Window.Notify.Add($Window.GetVar('clipboard'), 'ok', 1000);
+        }
+    });
+
 };
 
 $Window.LayerShow = function(layer_name){

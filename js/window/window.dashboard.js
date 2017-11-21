@@ -40,6 +40,7 @@ $Window.Dashboard.UpdateBalance = function(){
 
 $Window.Dashboard.Navigation = new Object();
 $Window.Dashboard.Navigation.Init = function(){
+    $("#window-dashboard_navigation").find("a").unbind();
     $("#window-dashboard_navigation").find("a").on('click', function(e){
         e.preventDefault();
         var option = $(this).attr('data-nav');
