@@ -39,9 +39,19 @@ $Window.Body.Send.Init = function(){
         $("#window_page_send_button").attr("disabled", "disabled");
         $RPC.Api.Transfer(amount, address, payment_id, securityLevel, function(e){
             $Window.Dashboard.UpdateBalance();
-            $('#window_page_send_amount').val('');
             $("#window_page_send_address").val('');
             //$("#window_page_send_button").remove("disabled");
+
+            $Window.Notify.Add(
+                Mustache.render($Window.GetVar('send_success'), {"Amount": $('#window_page_send_amount').val()}),
+                'out', 10000);
+
+            $('#window_page_send_amount').val('');
+
+        }, function(code, message){
+            $Window.Notify.Add(
+                Mustache.render($Window.GetVar('send_error'), {"Message": message}),
+                'out', 10000);
         });
 
     });

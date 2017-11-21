@@ -26,7 +26,7 @@ $Window.Body.Mining.Init = function(){
         e.preventDefault();
         var threads = parseInt($("#windows_mining_threads option:selected").val());
         $RPC.Api.StartMining(threads, function(){
-            $Window.Notify.Add($Window.GetVar('mining_started'), 'info', 10000);
+            $Window.Notify.Add($Window.GetVar('mining_started'), 'ok', 10000);
         },
         function(){
             $Window.Notify.Add($Window.GetVar('mining_start_error'), 'error', 10000);
@@ -37,7 +37,7 @@ $Window.Body.Mining.Init = function(){
     $('#window_mining_stop').click(function(e){
         e.preventDefault();
         $RPC.Api.StopMining(function(){
-            $Window.Notify.Add($Window.GetVar('mining_stop'), 'info', 10000);
+            $Window.Notify.Add($Window.GetVar('mining_stop'), 'ok', 10000);
         });
     });
 };

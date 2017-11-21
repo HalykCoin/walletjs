@@ -11,9 +11,10 @@ $Window.variables = [
     {name: "mining_started", "value":"Процесс майнинга был успешно запущен"},
     {name: "mining_start_error", "value":"Ошибка запуска добычи денег. Возможно, что процесс уже запущен"},
     {name: "mining_stop", "value":"Процесс добычи остановлен"},
-    {name: "send_success", "value":"Деньги были успешно отправлены. -{{Amount}}HLC"},
+    {name: "send_success", "value":"Транзакция была успешно помщена в очередь. -{{Amount}}HLC"},
     {name: "send_error", "value":"Ошибка отпраки денег. {{Message}}"},
-    {name: "incoming", "value":"Входящая транцакция. +{{Amount}}HLC"}
+    {name: "incoming", "value":"Входящая транцакция. +{{Amount}}HLC"},
+    {name: "clipboard", "value":"Данные скопированы в буфер обмена"}
 ];
 
 

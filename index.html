@@ -103,9 +103,7 @@
                     <h1>
                         История платежей
                     </h1>
-                    <p>
 
-                    </p>
                     <div class="wwl-row" id="windows_page_history_list">
 
                     </div>
@@ -208,7 +206,7 @@
                     <div class="wwl-row">
                         <div class="wwl-field">Количество потоков(чем больше, тем быстрее будет майнинг):</div>
                         <div class="wwl-input-container">
-                            <select id="windows_mining_threads">
+                            <select class="wwl-input" id="windows_mining_threads">
 
                             </select>
                         </div>
@@ -445,26 +443,41 @@
   </script>
 
     <script id="js_template_transfer" type="x-tmpl-mustache">
-        <div class="wwl-transfer" id="transfer_{{txid}}">
-            <span class="wwl-transfer-status wwl-transfer-{{status}}">{{status}}</span>
-            <span class="wwl-transfer-time">{{formatTime}}</span>
-            <a href="#" data-tx="{{txid}}" id="transfer_a_info_{{txid}}">{{txidshort}}</a>
-            <span class="wwl-transfer-amount">{{amountReadable}}</span>
-            <div class="wwl-transfer-info" style="display:none" id="transfer_info_{{txid}}">
-                <div>
-                    TransferId: <a href="#">{{txid}}</a>
-                </div>
-                <div>
-                    PaymentId: <a href="#">{{payment_id}}</a>
-                </div>
-                <div>
-                    Сумма: <a href="#">{{amountReadable}}</a>
-                </div>
-                <div>
-                    Комиссия: <a href="#">{{feeReadable}}</a>
-                </div>
-            </div>
-        </div>
+
+            <ul class="wwl-transfer" id="transfer_{{txid}}">
+                <li class="wwl-transfer-status wwl-transfer-{{status}}">
+
+                </li>
+                <li class="wwl-transfer-time">
+                    {{formatTime}}
+                </li>
+                <li class="wwl-transfer-id">
+                    <a href="#" data-tx="{{txid}}" id="transfer_a_info_{{txid}}">{{txidshort}}</a>
+                </li>
+                <li class="wwl-transfer-amount">
+                    {{amountReadable}}
+                </li>
+                <ul class="wwl-transfer-info" style="display:none" id="transfer_info_{{txid}}">
+                    <li>
+                        TransferId: <a href="#">{{txid}}</a>
+                    </li>
+                    <li>
+                        PaymentId: <a href="#">{{payment_id}}</a>
+                    </li>
+                    <li>
+                        Сумма: <a href="#">{{amountReadable}}</a>
+                    </li>
+                    <li>
+                        Комиссия: <a href="#">{{feeReadable}}</a>
+                    </li>
+                </ul>
+            </ul>
+
+
+
+
+
+
     </script>
   </body>
 </html>

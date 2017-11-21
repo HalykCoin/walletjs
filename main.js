@@ -50,6 +50,17 @@ rpc.init(APP_FOLDER, settings, function(){
 });
 
 
+var contextMenu = Menu.buildFromTemplate([
+
+    { label: 'Show App', click:  function(){
+        mainWindow.show();
+    } },
+    { label: 'Quit', click:  function(){
+        application.isQuiting = true;
+        application.quit();
+    } }
+]);
+
 
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -58,7 +69,7 @@ let mainWindow
 
 function createWindow () {
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 1100, height: 700 , frame: false, resizable: false})
+  mainWindow = new BrowserWindow({width: 1100, height: 700 , frame: false, resizable: false, title: "Halykcoin"})
 
   // and load the index.html of the app.
   mainWindow.loadURL(url.format({

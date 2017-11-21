@@ -28,22 +28,26 @@ $Window.Body.Recieive.Init = function(){
         $Window.Body.Recieive.UpdateQR();
     });
 
+    $('#window_page_receive_id_generate').unbind();
     $('#window_page_receive_id_generate').click(function(e){
         e.preventDefault();
         $('#window_page_receive_id').val(_getPaymentId())
         $Window.Body.Recieive.UpdateQR();
     });
 
+    $('#window_page_receive_id_clear').unbind();
     $('#window_page_receive_id_clear').click(function(e){
         e.preventDefault();
         $('#window_page_receive_id').val('')
         $Window.Body.Recieive.UpdateQR();
     });
 
+    $('#window_page_receive_address').unbind();
     $('#window_page_receive_address').click(function(){
         const {clipboard} = require('electron');
         var content = $Window.Body.Recieive.address;
         clipboard.writeText(content);
+        $Window.Notify.Add($Window.GetVar('clipboard'), 'ok', 5000);
     });
 
 };
