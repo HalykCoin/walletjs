@@ -227,7 +227,6 @@ body {
     background: rgba(0,0,0,.03);
     height: 24px;
     width: 100%;
-    z-index: 9;
 }
 #window_controls {
     position: absolute;
@@ -316,7 +315,6 @@ body {
     margin-right: 5px;
     opacity: .6;
     transition: all 0.2s ease-in-out 0s;
-    z-index: 11;
 }
 .wwl-hide {
     display: block;
@@ -329,7 +327,6 @@ body {
     margin-left: 10px;
     opacity: .6;
     transition: all 0.2s ease-in-out 0s;
-    z-index: 11;
 }
 .wwl-hide:hover, .wwl-close:hover {
     opacity: 1;
@@ -341,7 +338,6 @@ body {
     width: 100%;
     float: left;
     padding-top: 5px;
-    z-index: 10;
 }
 
 .wwl-loader{
@@ -397,18 +393,4 @@ body {
 }
 .wwl-start-description {
 
-}
-
-.wll-recieve-address{
-    font-size: 20px;
-    text-align: center;
-    color: slategray;
-}
-
-#window_page_recieve_qr{
-    width: 250px;
-}
-
-#window_page_receive_address {
-    cursor:pointer;
 }

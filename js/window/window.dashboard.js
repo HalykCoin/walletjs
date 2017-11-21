@@ -7,10 +7,18 @@
 
 $Window.Dashboard = new Object();
 
+$Window.Dashboard._update_interval = null;
+
 $Window.Dashboard.Init = function(){
     $Window.Dashboard.Show();
     $Window.Dashboard.UpdateBalance();
     $Window.Dashboard.Navigation.Init();
+
+    clearInterval($Window.Dashboard._update_interval);
+    $Window.Dashboard._update_interval = setInterval(function(){
+        $Window.Dashboard.UpdateBalance();
+        //$Window.Body.History.Update();
+    }, 10000);
 };
 
 $Window.Dashboard.Show = function(){
@@ -26,7 +34,7 @@ $Window.Dashboard.UpdateBalance = function(){
 
         $RPC.Api.GetBalance(function(resp){
             $('#window_dashboard_unlocked').text(parseFloat(resp.result.unlocked_balance)/1000000000000);
-            $('#window_dashboard_balance').text(parseFloat(resp.result.balance)/1000000000000);
+            $('#window_dashboard_balance').text(parseFloat(resp.result.balance)/          1000000000000);
         });
 };
 

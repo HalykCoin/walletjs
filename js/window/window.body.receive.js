@@ -40,6 +40,12 @@ $Window.Body.Recieive.Init = function(){
         $Window.Body.Recieive.UpdateQR();
     });
 
+    $('#window_page_receive_address').click(function(){
+        const {clipboard} = require('electron');
+        var content = $Window.Body.Recieive.address;
+        clipboard.writeText(content);
+    });
+
 };
 
 $Window.Body.Recieive.UpdateQR = function(){

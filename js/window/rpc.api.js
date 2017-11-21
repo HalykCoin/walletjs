@@ -21,13 +21,15 @@ function _getRandomPort(n) {
 }
 
 function _getPaymentId() {
-    var charSet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    var randomString = '';
-    for (var i = 0; i < 64; i++) {
-        var randomPoz = Math.floor(Math.random() * charSet.length);
-        randomString += charSet.substring(randomPoz,randomPoz+1);
+    return generateHexString(64);
+}
+
+function generateHexString(length) {
+    var ret = "";
+    while (ret.length < length) {
+        ret += Math.random().toString(16).substring(2);
     }
-    return randomString;
+    return ret.substring(0,length);
 }
 
 $RPC.Api.GetBalance = function(onSuccess, onError){
@@ -56,8 +58,10 @@ $RPC.Api.Transfer = function(amount, address, paymentId, mixIn, onSuccess, onErr
 
     const postData = {"method":"transfer",
         "params":{
-         "destinations": [{"amount": amount,
-                            "address" : address}] },
+             "destinations": [{"amount": amount,
+                                "address" : address}],
+             "payment_id":paymentId},
+
          "payment_id":paymentId,
          "mixin" : mixIn,
          "get_tx_key": true,

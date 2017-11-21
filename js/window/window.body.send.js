@@ -7,6 +7,8 @@
 
 $Window.Body.Send = new Object();
 
+
+
 $Window.Body.Send.Init = function(){
 
     $("#window_page_send_button").unbind();
@@ -39,7 +41,7 @@ $Window.Body.Send.Init = function(){
             $Window.Dashboard.UpdateBalance();
             $('#window_page_send_amount').val('');
             $("#window_page_send_address").val('');
-            $("#window_page_send_button").removeAttribute("disabled");
+            //$("#window_page_send_button").remove("disabled");
         });
 
     });

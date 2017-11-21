@@ -80,7 +80,7 @@ $Window.Body.History.DrawTable = function(){
         var template  = $("#js_template_transfer").html();
         for(var i in $Window.Body.History.transfers){
             var transfer = Mustache.render(template, $Window.Body.History.transfers[i]);
-            $('#windows_page_history_list').append(transfer);
+            $('#windows_page_history_list').prepend(transfer);
 
             $('#transfer_a_info_'+$Window.Body.History.transfers[i].txid).unbind();
             $('#transfer_a_info_'+$Window.Body.History.transfers[i].txid).click(function(e){

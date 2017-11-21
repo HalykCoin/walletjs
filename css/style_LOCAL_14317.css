@@ -14,11 +14,6 @@ h1 {
     font-size: 42px;
     margin-bottom: 60px;
 }
-p {
-    line-height: 18px;
-    color: rgba(0,0,0,.5);
-    font-size: 14px;
-}
 .wwl-dashboard {
     width: 270px;
     height: 100vh;
@@ -182,9 +177,8 @@ p {
     background: -webkit-linear-gradient(45deg, #276fc6 0%,#2989d8 48%,#79b7e0 100%);
     background: linear-gradient(45deg, #276fc6 0%,#2989d8 48%,#79b7e0 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#276fc6', endColorstr='#79b7e0',GradientType=1 );
-    background: #276fc6;
     border: none !important;
-    border-radius: 6px;
+    border-radius: 26px;
     color: rgba(0,0,0, 0.55) !important;
     height: 32px !important;
     line-height: 32px !important;
@@ -201,7 +195,7 @@ p {
 .wwl-button {
     background: none;
     border: 1px solid rgba(0,0,0,.1);
-    border-radius: 6px;
+    border-radius: 26px;
     color: rgba(0,0,0, 0.55) !important;
     height: 32px !important;
     line-height: 32px !important;
@@ -219,21 +213,14 @@ p {
 
 body {
     background-color: #ecdcae;
-    overflow: hidden;
+
 }
 
 #window_header {
     -webkit-app-region:drag;
-    background: rgba(0,0,0,.03);
-    height: 24px;
-    width: 100%;
-    z-index: 9;
+    cursor: pointer;
 }
-#window_controls {
-    position: absolute;
-    right: 3px;
-    top: 7px;
-}
+
 
 #wallet_loading_process {
     width: 60%;
@@ -307,33 +294,25 @@ body {
 .wwl-close {
     display: block;
     float: right;
-    width: 12px;
-    height: 12px;
+    width: 15px;
+    height: 15px;
     background-image: url("../images/web/halykcoin-close.svg");
     background-size: cover;
     background-position: 50% 50%;
     margin-left: 10px;
     margin-right: 5px;
     opacity: .6;
-    transition: all 0.2s ease-in-out 0s;
-    z-index: 11;
 }
 .wwl-hide {
     display: block;
     float: right;
-    width: 12px;
-    height: 12px;
+    width: 15px;
+    height: 15px;
     background-image: url("../images/web/halykcoin-hide.svg");
     background-size: cover;
     background-position: 50% 50%;
     margin-left: 10px;
     opacity: .6;
-    transition: all 0.2s ease-in-out 0s;
-    z-index: 11;
-}
-.wwl-hide:hover, .wwl-close:hover {
-    opacity: 1;
-    transition: all 0.2s ease-in-out 0s;
 }
 .wwl-control {
     display: block;
@@ -341,7 +320,6 @@ body {
     width: 100%;
     float: left;
     padding-top: 5px;
-    z-index: 10;
 }
 
 .wwl-loader{
@@ -395,9 +373,6 @@ body {
 .windows-password-passed {
     color: seagreen;
 }
-.wwl-start-description {
-
-}
 
 .wll-recieve-address{
     font-size: 20px;
@@ -407,8 +382,4 @@ body {
 
 #window_page_recieve_qr{
     width: 250px;
-}
-
-#window_page_receive_address {
-    cursor:pointer;
 }
