@@ -64,6 +64,10 @@ $Window.Dashboard.Navigation.Show = function(option){
         $Window.Body.Send.Init();
     }
 
+    if(option=="mining"){
+        $Window.Body.Mining.Init();
+    }
+
     $("#window-dashboard_navigation").find("a").removeClass("wwl-current");
     $("#window-dashboard_navigation").find("a[data-nav='"+option+"']").addClass("wwl-current");
 

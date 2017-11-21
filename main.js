@@ -8,6 +8,7 @@ const http = require('http')
 const rpc = require('./js/modules/rpc.interface.js')
 const db = require('./js/modules/database.interface.js')
 const settings = require('./js/modules/settings.interface.js')
+const os = require('os');
 const {Menu} = require('electron')
 const DEBUG = true;
 const APP_FOLDER = app.getPath("home")+ "/.walletjs";
@@ -137,6 +138,9 @@ ipcMain.on('async', (event, arg) => {
                 event.sender.send('async-reply-'+arg.msg_id, settings.getSetting());
             }
 
+            if(arg.body.method == 'get_cpu'){
+                event.sender.send('async-reply-'+arg.msg_id, os.cpus() );
+            }
         }
     }
 });

@@ -154,6 +154,20 @@ $RPC.Api.GetHeight = function( onSuccess, onError){
     $RPC.Api.rpcWalletSend(postData, onSuccess, onError);
 };
 
+$RPC.Api.StartMining = function(threads, onSuccess, onError){
+    const postData = {"method":"start_mining",
+        "params":{"threads_count":parseInt(threads),"do_background_mining":false,"ignore_battery":true}
+    };
+    $RPC.Api.rpcWalletSend(postData, onSuccess, onError);
+};
+
+$RPC.Api.StopMining = function(onSuccess, onError){
+    const postData = {"method":"stop_mining",
+        "params":{}
+    };
+    $RPC.Api.rpcWalletSend(postData, onSuccess, onError);
+};
+
 
 
 //RPC API core methods
