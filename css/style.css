@@ -48,7 +48,7 @@ li {
     background: #276fc6; /* Old browsers */
     background: -moz-linear-gradient(45deg, #276fc6 0%, #2989d8 48%, #79b7e0 100%); /* FF3.6-15 */
     background: -webkit-linear-gradient(45deg, #276fc6 0%,#2989d8 48%,#79b7e0 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(45deg, #276fc6 0%,#2989d8 48%,#79b7e0 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    background: linear-gradient(45deg, #062d5d 0%,#064375 48%,#1e455f 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#276fc6', endColorstr='#79b7e0',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 
     width: 240px;
@@ -70,10 +70,10 @@ li {
     transform: translateX(0) scale(1,1);
 
 }
-.wwl-balance:hover {
+/*.wwl-balance:hover {
     transform: translateX(10px) scale(1.1,1.1);
     transition: all 0.1s linear 0s;
-}
+}*/
 .wwl-brand {
     padding: 10px 0px;
     width: 64px;
@@ -132,16 +132,16 @@ li {
     transition: all 0.1s linear 0s;
     transform: translateX(0) scale(1,1);
     display: block;
-
+    cursor: default;
 }
 .wwl-nav a:hover {
-    color: rgb(63, 143, 204);
-    transform: translateX(10px) scale(1.1,1.1);
+    color: #315f96;
+    transform: translateX(0px) scale(1,1);
     transition: all 0.1s linear 0s;
 
 }
-.wwl-nav .wwl-current {
-    color: rgb(63, 143, 204);
+.wwl-nav .wwl-current, .wwl-nav .wwl-current:hover {
+    color: #315f96;
     transform: translateX(10px) scale(1.1,1.1);
 
 }
@@ -193,13 +193,12 @@ li {
     outline:none;
 }
 .wwl-button-primary {
-    background: #276fc6;
     border: 1px solid rgba(0,0,0,0);
     background: -moz-linear-gradient(45deg, #276fc6 0%, #2989d8 48%, #79b7e0 100%);
     background: -webkit-linear-gradient(45deg, #276fc6 0%,#2989d8 48%,#79b7e0 100%);
     background: linear-gradient(45deg, #276fc6 0%,#2989d8 48%,#79b7e0 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#276fc6', endColorstr='#79b7e0',GradientType=1 );
-    background: #276fc6;
+    background: #214877;
     border: none !important;
     border-radius: 6px;
     color: rgba(0,0,0, 0.55) !important;
@@ -252,7 +251,7 @@ body {
     -webkit-app-region: drag;
     background: rgba(0,0,0,.03);
     height: 24px;
-    width: 1050px;
+    width: 1028px;
     z-index: 9;
     text-align: center;
     font-size: 13px;
@@ -295,7 +294,7 @@ body {
     background: #276fc6; /* Old browsers */
     background: -moz-linear-gradient(45deg, #276fc6 0%, #2989d8 48%, #79b7e0 100%); /* FF3.6-15 */
     background: -webkit-linear-gradient(45deg, #276fc6 0%,#2989d8 48%,#79b7e0 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(45deg, #276fc6 0%,#2989d8 48%,#79b7e0 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    background: linear-gradient(45deg, #062d5d 0%,#064375 48%,#1e455f 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#276fc6', endColorstr='#79b7e0',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 
     width: 100%;
@@ -361,7 +360,22 @@ body {
     transition: all 0.2s ease-in-out 0s;
     z-index: 11;
 }
-.wwl-hide:hover, .wwl-close:hover {
+.wwl-lock {
+    display: block;
+    float: right;
+    width: 13px;
+    height: 13px;
+    background-image: url('../images/web/halykcoin-lock.svg');
+    background-size: cover;
+    background-position: 50% 50%;
+    margin-left: 10px;
+    opacity: .6;
+    transition: all 0.2s ease-in-out 0s;
+    z-index: 11;
+    position: relative;
+    bottom: 0px;
+}
+.wwl-hide:hover, .wwl-close:hover, .wwl-lock:hover {
     opacity: 1;
     transition: all 0.2s ease-in-out 0s;
 }
