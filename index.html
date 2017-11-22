@@ -162,14 +162,12 @@
                         <div class="wwl-field">Сумма:</div>
                         <div class="wwl-input-container">
                             <input class="wwl-input" id="window_page_send_amount">
+                            <a href="#" class="wwl-button-primary" id="window_page_send_button">
+                                Отправить
+                            </a>
                         </div>
                     </div>
 
-                    <div class="wwl-row">
-                        <a href="#" class="wwl-button-primary" id="window_page_send_button">
-                            Отправить
-                        </a>
-                    </div>
                 </div>
             </div>
             <div class="wwl-page-layout" id="window_page_receive" style="display:none">
@@ -210,7 +208,7 @@
                         </div>
                     </div>
 
-                    <div class="wwl-row">
+                    <div class="wwl-row wwl-qr">
                         <img src="#" id="window_page_receive_qr">
                     </div>
                 </div>
@@ -221,7 +219,7 @@
                     <h1>
                         Майнинг
                     </h1>
-                    <div class="wwl-row">
+
                         <div class="wll-page-layout-info">
                             <p>
                                 Майнинг - это основа выпуска денег в блокчейне. Когда вы занимаетесь майнингом, вы отдаете
@@ -230,7 +228,7 @@
                                 амортизации вашего оборудования и вашего времени.
                             </p>
                         </div>
-                    </div>
+
                     <div class="wwl-row">
                         <div class="wwl-field">Количество потоков(чем больше, тем быстрее будет майнинг):</div>
                         <div class="wwl-input-container">
@@ -483,7 +481,7 @@
                     <a href="#" data-tx="{{txid}}" id="transfer_a_info_{{txid}}">{{txidshort}}</a>
                 </li>
                 <li class="wwl-transfer-amount">
-                    {{amountReadable}}
+                    {{amountReadable}} HLC
                 </li>
                 <ul class="wwl-transfer-info" style="display:none" id="transfer_info_{{txid}}">
                     <li>
