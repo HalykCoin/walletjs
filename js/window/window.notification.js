@@ -59,7 +59,7 @@ $Window.Notify.Show = function(){
         $Window.Notify._current = notification.id;
 
         $("#windows_notification_message").html(notification.message);
-        $("#windows_notification_icon").attr('class', 'wwl-notification-icon wwl-notification-icon-'+notification.type);
+        $("#windows_notification_icon").attr('class', 'wwl-notification-icon wwl-notification-'+notification.type);
 
             if(notification.timeout>0){
                 clearTimeout($Window.Notify._notificationTimer);

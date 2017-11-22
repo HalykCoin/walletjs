@@ -6,7 +6,7 @@ const path = require('path')
 const url = require('url')
 const http = require('http')
 const rpc = require('./js/modules/rpc.interface.js')
-const db = require('./js/modules/database.interface.js')
+//const db = require('./js/modules/database.interface.js')
 const settings = require('./js/modules/settings.interface.js')
 const os = require('os');
 const {Menu} = require('electron')
@@ -26,9 +26,9 @@ var settingsObj = settings.getSetting();
 console.log(settingsObj);
 
 //**********DATABASE  INITIALIZATION********************
-db.initDb(APP_FOLDER, function(){
-    console.log("Database inited");
-});
+//db.initDb(APP_FOLDER, function(){
+//    console.log("Database inited");
+//});
 
 
 //**********RPC DEMON INITIALIZATION********************
@@ -135,12 +135,12 @@ ipcMain.on('async', (event, arg) => {
                 var responce = null;
                 try {
                     responce =JSON.parse(resp);
+                    responce['request'] = arg.body;
                 }
                 catch (e) {
                     event.sender.send('async-reply-'+arg.msg_id, {"error":{"message":"JSON parse error"}});
                 }
 
-                responce['request'] = arg.body;
                 console.log(responce);
                 event.sender.send('async-reply-'+arg.msg_id, responce);
             }, function(m){

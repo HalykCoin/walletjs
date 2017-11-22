@@ -45,7 +45,7 @@ $Window.Init = function(){
         window.minimize();
     });
 
-    $('body').on('click', 'a div', function (event) {
+    $('body').on('click', 'a,div', function (event) {
         var clipboard_data = $(this).attr("data-clipboard");
         if (typeof(clipboard_data) != "undefined") {
             const {clipboard} = require('electron');
