@@ -4,6 +4,7 @@
  * Time: 8:48 PM
  * To change this template use File | Settings | File Templates.
  */
+const DEV = true;
 var settings = null;
 const http = require('http');
 const exec = require('child_process').exec;
@@ -18,6 +19,8 @@ var blockchainServer;
 var rpcServerIsReady = false;
 
 var blockchainServerExec = './server/build/release/bin/monerod';
+
+
 var rpcServerExec = './server/build/release/bin/monero-wallet-rpc';
 
 const _defaultRpcHeaders = {"jsonrpc":"2.0", "id":"0"};
@@ -82,7 +85,11 @@ function init(appFolder, incommingSettings, onReady, onNetworkSync, onFail) {
         "--disable-rpc-login"
     ];
     //./build/release/bin/monero-wallet-rpc --wallet-file=test --rpc-bind-ip 127.0.0.1 --rpc-bind-port 18082 --disable-rpc-login
-    blockchainServer = spawn(blockchainServerExec);
+
+    var nodeArgs = [];
+    if(DEV) nodeArgs.push("--add-priority-node=192.168.1.200");
+
+    blockchainServer = spawn(blockchainServerExec, nodeArgs);
 
 
     blockchainServer.stdout.on('data', (data) => {

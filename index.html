@@ -16,9 +16,11 @@
       <script src="./js/vendor/unslider.min.js"></script>
       <!--<script src="https://code.jquery.com/jquery-3.2.1.js"></script> -->
       <script src="./js/window/window.js" charset="utf-8"></script>
+      <script src="./js/window/window.langvars.js" charset="utf-8"></script>
       <script src="./js/window/window.qr.js" charset="utf-8"></script>
       <script src="./js/window/window.loader.js" charset="utf-8"></script>
       <script src="./js/window/window.body.js" charset="utf-8"></script>
+      <script src="./js/window/window.notification.js" charset="utf-8"></script>
       <script src="./js/window/window.body.history.js" charset="utf-8"></script>
       <script src="./js/window/window.body.receive.js" charset="utf-8"></script>
       <script src="./js/window/window.body.send.js" charset="utf-8"></script>
@@ -38,10 +40,17 @@
         <a href="#" id="window_close" class="wwl-close"></a>
         <a href="#" id="window_minimize" class="wwl-hide"></a>
     </div>
+<<<<<<< HEAD
     <div class="wwl-notification wwl-notification-error" style="display: none">
         <div class="wwl-notification-cancel"></div>
         <div class="wwl-notification-icon"></div>
         <div class="wwl-notification-message">Уведомление здесь</div>
+=======
+    <div class="wwl-notification" style="display: none" id="windows_notification">
+        <div class="wwl-notification-cancel"  id="windows_notification_cancel"></div>
+        <div class="wwl-notification-icon" id="windows_notification_icon"></div>
+        <div class="wwl-notification-message" id="windows_notification_message">Уведомление здесь</div>
+>>>>>>> 6ff12c0a92303ec41db317fa6c4a584967bc9cc5
     </div>
     <div class="layout" id="window_body" style="display: none">
         <div class="wwl-dashboard" id="window_dashboard" >
@@ -58,7 +67,7 @@
                         Баланс:
                     </div>
                     <div class="wwl-balance-sum wwl-balance-sum-special" id="window_dashboard_balance">
-                        0.000000000000
+                        0.000000000000 <span> HLC</span>
                     </div>
                 </div>
                 <div class="wwl-balance-available">
@@ -66,7 +75,7 @@
                         Доступно:
                     </div>
                     <div class="wwl-balance-sum" id="window_dashboard_unlocked">
-                        0.000000000000
+                        0.000000000000 <span> HLC</span>
                     </div>
                 </div>
             </div>
@@ -102,6 +111,15 @@
                     <h1>
                         История платежей
                     </h1>
+
+                    <div class="wll-page-layout-info">
+                        <p>
+                            История платежей отображает все транзакции за недавний период. Щелкнув на уникальный идентификатор
+                             вы сможете получить больше информации о транзакции.
+                        </p>
+                    </div>
+
+
                     <div class="wwl-row" id="windows_page_history_list">
 
                     </div>
@@ -112,6 +130,16 @@
                     <h1>
                         Отправить
                     </h1>
+
+                    <div class="wll-page-layout-info">
+                        <p>
+                            Для отправки денег на другой кошелек, вам необходим адрес кошелька. Адрес кошелька - это
+                            95 символьное представление, которое можно найти на вкладке "Получить". Вы также можете
+                            сформировать случайны идентификатор платежа, по которому получателю будет проще идентифицировать
+                            вашу транзакцию из множества других.
+                        </p>
+                    </div>
+
                     <div class="wwl-row">
                         <div class="wwl-field">Адрес получателя:</div>
                         <div class="wwl-input-container">
@@ -155,6 +183,15 @@
                     <h1>
                         Получить
                     </h1>
+
+                    <div class="wll-page-layout-info">
+                        <p>
+                            Необходимые реквизиты для получения денег на ваш кошелек. Сгенерированный QR-код легко считается
+                            мобильной версией кошелька. Вы также можете выставить счет, указав сумму счета, а также уникальный
+                            идентификатор платежа.
+                        </p>
+                    </div>
+
                     <div class="wwl-row">
                         <div class="wll-recieve-address" id="window_page_receive_address">
 
@@ -192,10 +229,12 @@
                     </h1>
                     <div class="wwl-row">
                         <div class="wll-page-layout-info">
-                            Майнинг - это основа выпуска денег в блокчейне. Когда вы занимаетесь майнингом, вы отдаете
-                            вычислительные ресурсы вашего компьютера взамен вы получаете добытые вами Халыккоины. Стоимость
-                            добытых вами денег определяется стоимостью затраченной вами электроэнергии, а так же стоимостью
-                            амортизации вашего оборудования.
+                            <p>
+                                Майнинг - это основа выпуска денег в блокчейне. Когда вы занимаетесь майнингом, вы отдаете
+                                вычислительные ресурсы вашего компьютера. Взамен вы получаете добытые вами Халыккоины. Стоимость
+                                добытых вами денег определяется стоимостью затраченной вами электроэнергии, а так же стоимостью
+                                амортизации вашего оборудования и вашего времени.
+                            </p>
                         </div>
                     </div>
                     <div class="wwl-row">
@@ -454,16 +493,16 @@
                 </li>
                 <ul class="wwl-transfer-info" style="display:none" id="transfer_info_{{txid}}">
                     <li>
-                        TransferId: <a href="#">{{txid}}</a>
+                        TransferId: <a href="#" data-clipboard="{{txid}}">{{txid}}</a>
                     </li>
                     <li>
-                        PaymentId: <a href="#">{{payment_id}}</a>
+                        PaymentId: <a href="#" data-clipboard="{{payment_id}}">{{payment_id}}</a>
                     </li>
                     <li>
-                        Сумма: <a href="#">{{amountReadable}}</a>
+                        Сумма: <a href="#" data-clipboard="{{amountReadable}}">{{amountReadable}}</a>
                     </li>
                     <li>
-                        Комиссия: <a href="#">{{feeReadable}}</a>
+                        Комиссия: <a href="#" data-clipboard="{{feeReadable}}">{{feeReadable}}</a>
                     </li>
                 </ul>
             </ul>

@@ -6,7 +6,7 @@ const path = require('path')
 const url = require('url')
 const http = require('http')
 const rpc = require('./js/modules/rpc.interface.js')
-const db = require('./js/modules/database.interface.js')
+//const db = require('./js/modules/database.interface.js')
 const settings = require('./js/modules/settings.interface.js')
 const os = require('os');
 const {Menu} = require('electron')
@@ -26,9 +26,9 @@ var settingsObj = settings.getSetting();
 console.log(settingsObj);
 
 //**********DATABASE  INITIALIZATION********************
-db.initDb(APP_FOLDER, function(){
-    console.log("Database inited");
-});
+//db.initDb(APP_FOLDER, function(){
+//    console.log("Database inited");
+//});
 
 
 //**********RPC DEMON INITIALIZATION********************
@@ -50,6 +50,18 @@ rpc.init(APP_FOLDER, settings, function(){
 });
 
 
+var contextMenu = Menu.buildFromTemplate([
+
+    { label: 'Show App', click:  function(){
+        mainWindow.show();
+    } },
+    { label: 'Quit', click:  function(){
+        application.isQuiting = true;
+        application.quit();
+
+    } }
+]);
+
 
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -58,7 +70,7 @@ let mainWindow
 
 function createWindow () {
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 1100, height: 700 , frame: false, resizable: false})
+  mainWindow = new BrowserWindow({width: 1100, height: 700 , frame: false, resizable: false, title: "Halykcoin"})
 
   // and load the index.html of the app.
   mainWindow.loadURL(url.format({
@@ -119,8 +131,16 @@ ipcMain.on('async', (event, arg) => {
     if(typeof(arg.action) != "undefined"){
         if(arg.action == "rpc-wallet" && typeof arg.body =="object"){
             rpc.request(arg.body, function(resp){
-                var responce =JSON.parse(resp);
-                responce['request'] = arg.body;
+
+                var responce = null;
+                try {
+                    responce =JSON.parse(resp);
+                    responce['request'] = arg.body;
+                }
+                catch (e) {
+                    event.sender.send('async-reply-'+arg.msg_id, {"error":{"message":"JSON parse error"}});
+                }
+
                 console.log(responce);
                 event.sender.send('async-reply-'+arg.msg_id, responce);
             }, function(m){

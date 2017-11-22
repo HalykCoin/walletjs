@@ -14,6 +14,7 @@ var loaderJobber = null;
 $(document).ready(function(){
     $Window.Init();
     $Window.Loader.Init();
+    $Window.Notify.Init();
 
     $("#wallet_create_submit").click(function(){
         var wallet_name = $('#wallet_create_name').val();
@@ -42,6 +43,15 @@ $Window.Init = function(){
     $('#window_minimize').click(function (e) {
         var window = remote.getCurrentWindow();
         window.minimize();
+    });
+
+    $('body').on('click', 'a,div', function (event) {
+        var clipboard_data = $(this).attr("data-clipboard");
+        if (typeof(clipboard_data) != "undefined") {
+            const {clipboard} = require('electron');
+            clipboard.writeText(clipboard_data);
+            $Window.Notify.Add($Window.GetVar('clipboard'), 'ok', 1000);
+        }
     });
 
 };

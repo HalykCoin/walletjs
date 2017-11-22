@@ -14,48 +14,83 @@ $Window.Body.History.Init = function(){
 $Window.Body.History.transfers = [];
 $Window.Body.History.timeFormat = "DD-MM-YYYY HH:mm:ss";
 
+$Window.Body.History._lastTransactionInTime = 0;
+
 $Window.Body.History.Update = function(){
     $RPC.Api.GetTransfers(true,true,true,true,true, function(res){
         $Window.Body.History.transfers = [];
 
-        console.log(typeof res.result.in );
-
-        if(typeof res.result.in =='array' || typeof res.result.in =='object'){
-            for(var i in res.result.in){
-                $Window.Body.History.transfers.push($Window.Body.History.ExtractTransfer(res.result.in[i], 'in'));
-            }
-        }
-
-        if(typeof res.result.out =='array' || typeof res.result.out =='object'){
-            for(var i in res.result.out){
-                $Window.Body.History.transfers.push($Window.Body.History.ExtractTransfer(res.result.out[i], 'out'));
-            }
-        }
-
-        if(typeof res.result.pending =='array' || typeof res.result.pending =='object'){
-            for(var i in res.result.pending){
-                $Window.Body.History.transfers.push($Window.Body.History.ExtractTransfer(res.result.pending[i], 'pending'));
-            }
-        }
-
-        if(typeof res.result.pool =='array' || typeof res.result.pool =='object'){
-            for(var i in res.result.pool){
-                $Window.Body.History.transfers.push($Window.Body.History.ExtractTransfer(res.result.pool[i], 'pool'));
-            }
-        }
-
-        $Window.Body.History.transfers.sort(function(a, b){
-            var keyA = a.timestamp,
-                keyB = b.timestamp;
-            // Compare the 2 dates
-            if(keyA < keyB) return -1;
-            if(keyA > keyB) return 1;
-            return 0;
-        });
-
+        $Window.Body.History.ExtractTransfers(res);
         $Window.Body.History.DrawTable();
+
+        for(var i in $Window.Body.History.transfers){
+            if($Window.Body.History.transfers[i].status == 'in' || $Window.Body.History.transfers[i].status == 'pool'){
+                if($Window.Body.History._lastTransactionInTime < $Window.Body.History.transfers[i].timestamp)
+                    $Window.Body.History._lastTransactionInTime = $Window.Body.History.transfers[i].timestamp;
+            }
+        }
     });
     //windows_page_history_list
+};
+
+$Window.Body.History.BackgroundUpdate = function(){
+    $RPC.Api.GetTransfers(true,true,true,true,true, function(res){
+        $Window.Body.History.transfers = [];
+        $Window.Body.History.ExtractTransfers(res);
+
+        for(var i in $Window.Body.History.transfers){
+            if($Window.Body.History.transfers[i].status == 'in' || $Window.Body.History.transfers[i].status == 'pool'){
+                if($Window.Body.History._lastTransactionInTime < $Window.Body.History.transfers[i].timestamp){
+                    $Window.Body.History._lastTransactionInTime = $Window.Body.History.transfers[i].timestamp;
+
+                    $Window.Notify.Add(
+                        Mustache.render($Window.GetVar('incoming'), {"Amount": $Window.Body.History.transfers[i].amountReadable}),
+                        'in', 0, function(){
+                            $Window.Dashboard.Navigation.Show('history');
+                        } );
+                }
+
+            }
+        }
+    });
+    //windows_page_history_list
+};
+
+
+$Window.Body.History.ExtractTransfers = function(res){
+    if(typeof res.result.in =='array' || typeof res.result.in =='object'){
+        for(var i in res.result.in){
+            $Window.Body.History.transfers.push($Window.Body.History.ExtractTransfer(res.result.in[i], 'in'));
+        }
+    }
+
+    if(typeof res.result.out =='array' || typeof res.result.out =='object'){
+        for(var i in res.result.out){
+            $Window.Body.History.transfers.push($Window.Body.History.ExtractTransfer(res.result.out[i], 'out'));
+        }
+    }
+
+    if(typeof res.result.pending =='array' || typeof res.result.pending =='object'){
+        for(var i in res.result.pending){
+            $Window.Body.History.transfers.push($Window.Body.History.ExtractTransfer(res.result.pending[i], 'pending'));
+        }
+    }
+
+    if(typeof res.result.pool =='array' || typeof res.result.pool =='object'){
+        for(var i in res.result.pool){
+            $Window.Body.History.transfers.push($Window.Body.History.ExtractTransfer(res.result.pool[i], 'pool'));
+        }
+    }
+
+    $Window.Body.History.transfers.sort(function(a, b){
+        var keyA = a.timestamp,
+            keyB = b.timestamp;
+        // Compare the 2 dates
+        if(keyA < keyB) return -1;
+        if(keyA > keyB) return 1;
+        return 0;
+    });
+
 };
 
 $Window.Body.History.ExtractTransfer = function(tr, status){

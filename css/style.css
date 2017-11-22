@@ -458,6 +458,7 @@ body {
     padding: 10px 20px;
     z-index: 11;
     background: rgba(62, 62, 62, 1);
+    cursor: pointer;
 
 }
 .wwl-notification-message {
@@ -487,16 +488,17 @@ body {
     height: 20px;
     float: left;
 }
-.wwl-notification-okay .wwl-notification-icon {
+
+.wwl-notification-ok {
     background-image: url("../images/web/halykcoin-okay.svg");
 }
-.wwl-notification-error .wwl-notification-icon {
+.wwl-notification-error {
     background-image: url("../images/web/halykcoin-warning.svg");
 }
-.wwl-notification-in .wwl-notification-icon {
+.wwl-notification-in {
     background-image: url("../images/web/halykcoin-in-white.svg");
 }
-.wwl-notification-out .wwl-notification-icon {
+.wwl-notification-out {
     background-image: url("../images/web/halykcoin-out-white.svg");
 }
 .wwl-transfer {

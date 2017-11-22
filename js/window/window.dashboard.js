@@ -17,7 +17,7 @@ $Window.Dashboard.Init = function(){
     clearInterval($Window.Dashboard._update_interval);
     $Window.Dashboard._update_interval = setInterval(function(){
         $Window.Dashboard.UpdateBalance();
-        //$Window.Body.History.Update();
+        $Window.Body.History.BackgroundUpdate();
     }, 10000);
 };
 
@@ -33,13 +33,22 @@ $Window.Dashboard.UpdateBalance = function(){
     $('#window_dashboard_unlocked').text();
 
         $RPC.Api.GetBalance(function(resp){
-            $('#window_dashboard_unlocked').text(parseFloat(resp.result.unlocked_balance)/1000000000000);
-            $('#window_dashboard_balance').text(parseFloat(resp.result.balance)/          1000000000000);
+
+            var balance = (parseFloat(resp.result.unlocked_balance)/1000000000000);
+            var unlocked_balance = parseFloat((resp.result.balance)/          1000000000000);
+
+            if (balance> 1000){
+                balance = balance.toFixed(8);
+            }
+
+            $('#window_dashboard_unlocked').html(balance + '<span> HLC</span>');
+            $('#window_dashboard_balance').html( unlocked_balance+ '<span> HLC</span>');
         });
 };
 
 $Window.Dashboard.Navigation = new Object();
 $Window.Dashboard.Navigation.Init = function(){
+    $("#window-dashboard_navigation").find("a").unbind();
     $("#window-dashboard_navigation").find("a").on('click', function(e){
         e.preventDefault();
         var option = $(this).attr('data-nav');
