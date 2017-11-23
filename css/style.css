@@ -126,7 +126,7 @@ li {
     font-size: 18px;
     font-weight: 100;
     color: rgb(255, 255, 255);
-    transition: all 0.1s linear 0s;
+    transition: all 0.2s linear 0.1s;
     transform: translateX(0) scale(1,1);
     display: block;
     cursor: default;
@@ -134,7 +134,7 @@ li {
 .wwl-nav a:hover {
     color: #315f96;
     transform: translateX(0px) scale(1,1);
-    transition: all 0.1s linear 0s;
+    transition: all 0.2s linear 0.1s;
 
 }
 .wwl-nav .wwl-current, .wwl-nav .wwl-current:hover {
@@ -495,6 +495,7 @@ body {
     opacity: .6;
     width: 7px;
     height: 7px;
+    cursor: default;
 }
 .wwl-notification-icon {
 
@@ -576,6 +577,9 @@ body {
 .wwl-transfer-pool .wwl-transfer-amount {
     color: rgba(22, 132, 63, .5);
 }
+.wwl-transfer-in .wwl-transfer-amount:before,.wwl-transfer-pool .wwl-transfer-amount:before {
+    content: '+';
+}
 .wwl-transfer-out .wwl-transfer-status {
     background-image: url("../images/web/halykcoin-out.svg");
 }
@@ -603,4 +607,7 @@ body {
 }
 .wll-page-layout-info {
     margin-bottom: 40px;
+}
+#windows_page_history_list {
+    padding-bottom: 30px;
 }
