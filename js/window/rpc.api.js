@@ -38,7 +38,7 @@ $RPC.Api.GetBalance = function(onSuccess, onError){
 };
 
 // $RPC.Api.GetTransfers(true,true,true,true,true);
-$RPC.Api.GetTransfers = function(t_it, t_out, t_pending, t_failed, t_pool, onSuccess, onError){
+$RPC.Api.GetTransfers = function(t_it, t_out, t_pending, t_failed, t_pool, t_min, t_max, onSuccess, onError){
     const postData = {"method":"get_transfers",
         "params":{
             "in":t_it,
@@ -48,6 +48,16 @@ $RPC.Api.GetTransfers = function(t_it, t_out, t_pending, t_failed, t_pool, onSuc
             "pool":t_pool}
         };
 
+    if(t_min!=0){
+        postData.params.min_height = t_min;
+        postData.params.filter_by_height = true;
+    }
+
+    if(t_max!=0){
+        postData.params.max_height = t_max;
+        postData.params.filter_by_height = true;
+    }
+
     $RPC.Api.rpcWalletSend(postData, onSuccess, onError);
 };
 
@@ -56,7 +66,7 @@ $RPC.Api.Transfer = function(amount, address, paymentId, mixIn, onSuccess, onErr
 
     paymentId = (paymentId=='')?  "0000000000000000" : paymentId;
 
-    const postData = {"method":"transfer",
+    const postData = {"method":"transfer_split",
         "params":{
              "destinations": [{"amount": amount,
                                 "address" : address}],
@@ -64,12 +74,13 @@ $RPC.Api.Transfer = function(amount, address, paymentId, mixIn, onSuccess, onErr
 
          "payment_id":paymentId,
          "mixin" : mixIn,
-         "get_tx_key": true,
          "new_algorithm": true
 
     };
     $RPC.Api.rpcWalletSend(postData, onSuccess, onError);
 };
+
+
 
 // $RPC.Api.GetAdressBook([1,2,3])
 $RPC.Api.GetAdressBook = function(range, onSuccess, onError){

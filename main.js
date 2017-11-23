@@ -134,10 +134,15 @@ ipcMain.on('async', (event, arg) => {
 
                 var responce = null;
                 try {
+
+                    console.log("responce:");
+                    console.log(resp);
+
                     responce =JSON.parse(resp);
                     responce['request'] = arg.body;
                 }
                 catch (e) {
+
                     event.sender.send('async-reply-'+arg.msg_id, {"error":{"message":"JSON parse error"}});
                 }
 
