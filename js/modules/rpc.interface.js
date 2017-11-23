@@ -19,9 +19,13 @@ var blockchainServer;
 var rpcServerIsReady = false;
 
 var blockchainServerExec = './server/build/release/bin/monerod';
-
-
 var rpcServerExec = './server/build/release/bin/monero-wallet-rpc';
+
+const os = require('os');
+if(os.platform() == 'win32'){
+    blockchainServerExec = './server/halykcoind';
+    rpcServerExec = './server/halykcoin-wallet-rpc';
+}
 
 const _defaultRpcHeaders = {"jsonrpc":"2.0", "id":"0"};
 var currentSettingscurrentSettings;
