@@ -611,3 +611,21 @@ body {
 #windows_page_history_list {
     padding-bottom: 30px;
 }
+#s_pin {
+    margin-top: 40px;
+}
+#s_pin input {
+    margin-top: 20px;
+    width: 50px;
+    height: 60px;
+    border-radius: 6px;
+    border: 1px solid rgb(6, 60, 109);
+    font-size: 40px;
+    text-align: center;
+    color: rgba(0,0,0,.95);
+}
+.wwl-pin-message {
+    color: rgba(255,255,255,.75);
+    font-size: 14px;
+    text-transform: uppercase;
+}
