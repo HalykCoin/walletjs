@@ -24,9 +24,11 @@ $Window.Body.History.Update = function(){
         if(res.result.height>1){
             $Window.Body._curentHeight = res.result.height;
 
-            for(var i=$Window.Body._curentHeight+10; i>0; i=i-1000){
+            var step = 200;
+
+            for(var i=$Window.Body._curentHeight; i>0; i=i-step){
                 var current_height = i;
-                var target = ((current_height-1000)<0)? 0 : current_height-1000;
+                var target = ((current_height-step)<0)? 0 : current_height-step;
                 //console.log("History for "+ target + " " + current_height);
                 $RPC.Api.GetTransfers(true,true,true,true,true, target, current_height, function(res){
                     var transfers = $Window.Body.History.ExtractTransfers(res);
@@ -61,6 +63,7 @@ $Window.Body.History.Update = function(){
 $Window.Body.History.TransfersConcat = function(transfers){
     if(transfers.length>0){
         for(var i in transfers){
+            console.log(transfers[i].timestamp);
             var in_list = false;
             for(var j in $Window.Body.History.transfers){
                 if($Window.Body.History.transfers[j].txid == transfers[i].txid){

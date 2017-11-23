@@ -74,7 +74,7 @@ $Window.Loader.update = function(args){
                 $Window.Controls.Show();
             } else {
                 $Window.Pin.Auth.Init();
-                $Window.Controls.Show();
+                //$Window.Controls.Show();
             }
         });
 

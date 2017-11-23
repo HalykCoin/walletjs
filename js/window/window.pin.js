@@ -81,6 +81,7 @@ $Window.Pin.Auth.Init = function(){
     $Window.LayerShow("window_splash");
     $("#window_splash_loader").hide();
     $("#window_splash_copy").hide();
+    $("#s_pin").show();
 
     $("body").unbind("keypress.pinCode");
     $("body").bind("keypress.pinCode", function(e){
@@ -112,51 +113,9 @@ $Window.Pin.Auth.Init = function(){
         }
     });
 
-
-    $("#s_pin_1, #s_pin_2, #s_pin_3, #s_pin_4").on("keyup",function(){
-        var pos = parseInt($(this).attr("data-position")) ;
-
-        if(pos == 4){
-            var pin = $("#s_pin_1").val() + $("#s_pin_2").val() +$("#s_pin_3").val() +$("#s_pin_4").val();
-
-
-            return;
-        }
-
-        $("#s_pin_"+(pos+1)).focus();
-    });
-
-    $("#s_pin").show();
-
-    return;
-    $Window.LayerShow("window_auth_wallet_pin");
-    $('#window_auth_pin_plain').val('');
-    $('#window_auth_pin_plain').focus();
-
-    $("#window_auth_pin_plain").on("keyup",function(){
-
-        var pin = $('#window_auth_pin_plain').val();
-        if(pin.length == 4){
-            $RPC.Api.WalletOpen('', '', pin, function(res){
-
-                if(typeof res.error == 'object'){
-                    $('#window_auth_pin_plain').val('');
-                } else {
-                    $("#window_auth_pin").removeAttr("disabled");
-                    $Window.Body.Init();
-                }
-
-            }, function(res){
-                $('#window_auth_pin_plain').val('');
-            })
-        }
-
-    });
 };
 
 $Window.Pin.Auth.InitFields = function(){
     $("#s_pin_1").val(''); $("#s_pin_2").val('');
     $("#s_pin_3").val(''); $("#s_pin_4").val('');
-
-    $("#s_pin_1").focus();
 };

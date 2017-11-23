@@ -10,6 +10,7 @@ $Window.Body = new Object();
 $Window.Body._getHeightInterval = null;
 $Window.Body._heightIsOk = false;
 $Window.Body._curentHeight = false;
+$Window.Body._bottomHeight = false;
 
 $Window.Body.Init = function(){
     $("#window_splash_copy").hide();
