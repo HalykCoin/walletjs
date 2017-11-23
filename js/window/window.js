@@ -54,6 +54,7 @@ $Window.Init = function(){
         }
     });
 
+    $Window.Lock.Init();
 };
 
 $Window.LayerShow = function(layer_name){

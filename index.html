@@ -17,6 +17,7 @@
       <!--<script src="https://code.jquery.com/jquery-3.2.1.js"></script> -->
       <script src="./js/window/window.js" charset="utf-8"></script>
       <script src="./js/window/window.langvars.js" charset="utf-8"></script>
+      <script src="./js/window/window.lock.js" charset="utf-8"></script>
       <script src="./js/window/window.qr.js" charset="utf-8"></script>
       <script src="./js/window/window.loader.js" charset="utf-8"></script>
       <script src="./js/window/window.body.js" charset="utf-8"></script>
@@ -87,9 +88,9 @@
                     <li>
                         <a href="#" data-nav="mining">Майнинг</a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="#" data-nav="settings">Настройки</a>
-                    </li>
+                    </li> -->
                     <li>
                         <a href="#" data-nav="additional">О продукте</a>
                     </li>
@@ -129,7 +130,7 @@
                         <p>
                             Для отправки денег на другой кошелек, вам необходим адрес кошелька. Адрес кошелька - это
                             95 символьное представление, которое можно найти на вкладке "Получить". Вы также можете
-                            сформировать случайны идентификатор платежа, по которому получателю будет проще идентифицировать
+                            сформировать случайны идентификатор покупки, по которому получателю будет проще идентифицировать
                             вашу транзакцию из множества других.
                         </p>
                     </div>
@@ -141,7 +142,7 @@
                         </div>
                     </div>
                     <div class="wwl-row">
-                        <div class="wwl-field">ID платежа:</div>
+                        <div class="wwl-field">ID покупки:</div>
                         <div class="wwl-input-container">
                             <input class="wwl-input" id="window_page_send_id">
                         </div>
@@ -180,7 +181,7 @@
                         <p>
                             Необходимые реквизиты для получения денег на ваш кошелек. Сгенерированный QR-код легко считается
                             мобильной версией кошелька. Вы также можете выставить счет, указав сумму счета, а также уникальный
-                            идентификатор платежа.
+                            идентификатор покупки.
                         </p>
                     </div>
 
@@ -190,7 +191,7 @@
                         </div>
                     </div>
                     <div class="wwl-row">
-                        <div class="wwl-field">ID платежа:</div>
+                        <div class="wwl-field">ID покупки:</div>
                         <div class="wwl-input-container">
                             <input class="wwl-input" id="window_page_receive_id">
                         </div>
@@ -226,6 +227,9 @@
                                 вычислительные ресурсы вашего компьютера. Взамен вы получаете добытые вами Халыккоины. Стоимость
                                 добытых вами денег определяется стоимостью затраченной вами электроэнергии, а так же стоимостью
                                 амортизации вашего оборудования и вашего времени.
+                                <br>
+                                С увеличением числа майнеров, сложность майнинга возрастает, тем самым увеличивая стоимость уже
+                                добытых вами Халыккоинов.
                             </p>
                         </div>
 
@@ -429,7 +433,13 @@
                 Portions Copyright (c) 2014-2017 The Monero Project.<br>
                 Portions Copyright (c) 2012-2013 The Cryptonote developers.<br>
             </div>
-            <img src="./images/loader.svg" class="wwl-loader">
+            <img src="./images/loader.svg" class="wwl-loader" id="window_splash_loader">
+            <div id="s_pin" style="display:none">
+                <input type="password" id="s_pin_1" data-position="1">
+                <input type="password" id="s_pin_2" data-position="2">
+                <input type="password" id="s_pin_3" data-position="3">
+                <input type="password" id="s_pin_4" data-position="4">
+            </div>
         </div>
     </div>
 
@@ -470,7 +480,7 @@
 
     <script id="js_template_transfer" type="x-tmpl-mustache">
 
-            <ul class="wwl-transfer wwl-transfer-{{status}}" id="transfer_{{txid}}">
+            <ul class="wwl-transfer wwl-transfer-{{status}}" data-timestamp="{{timestamp}}" id="transfer_{{txid}}">
                 <li class="wwl-transfer-status">
 
                 </li>

@@ -73,8 +73,64 @@ $Window.Pin.Validate = function(){
 };
 
 $Window.Pin.Auth = new Object();
+$Window.Pin.pos = 0;
+$Window.Pin.pin = '';
 $Window.Pin.Auth.Init = function(){
+
+    $Window.Pin.Auth.InitFields();
+    $Window.LayerShow("window_splash");
+    $("#window_splash_loader").hide();
+    $("#window_splash_copy").hide();
+
+    $("body").unbind("keypress.pinCode");
+    $("body").bind("keypress.pinCode", function(e){
+        if (e.which !== 0) {
+            $("#s_pin_"+($Window.Pin.pos+1)).val('*');
+            $Window.Pin.pin += String.fromCharCode(e.which);
+
+            if($Window.Pin.pos==3){
+                $RPC.Api.WalletOpen('', '', $Window.Pin.pin, function(res){
+                    if(typeof res.error == 'object'){
+                        $Window.Pin.pin = '';
+                        $Window.Pin.pos =  0;
+                        $Window.Pin.Auth.InitFields();
+
+                    } else {
+                        $Window.Pin.pin = '';
+                        $Window.Pin.pos =  0;
+                        $Window.Body.Init();
+                    }
+
+                }, function(res){
+                    $Window.Pin.pin = '';
+                    $Window.Pin.pos =  0;
+                    $Window.Pin.Auth.InitFields();
+                });
+            }
+
+            $Window.Pin.pos++;
+        }
+    });
+
+
+    $("#s_pin_1, #s_pin_2, #s_pin_3, #s_pin_4").on("keyup",function(){
+        var pos = parseInt($(this).attr("data-position")) ;
+
+        if(pos == 4){
+            var pin = $("#s_pin_1").val() + $("#s_pin_2").val() +$("#s_pin_3").val() +$("#s_pin_4").val();
+
+
+            return;
+        }
+
+        $("#s_pin_"+(pos+1)).focus();
+    });
+
+    $("#s_pin").show();
+
+    return;
     $Window.LayerShow("window_auth_wallet_pin");
+    $('#window_auth_pin_plain').val('');
     $('#window_auth_pin_plain').focus();
 
     $("#window_auth_pin_plain").on("keyup",function(){
@@ -96,4 +152,11 @@ $Window.Pin.Auth.Init = function(){
         }
 
     });
+};
+
+$Window.Pin.Auth.InitFields = function(){
+    $("#s_pin_1").val(''); $("#s_pin_2").val('');
+    $("#s_pin_3").val(''); $("#s_pin_4").val('');
+
+    $("#s_pin_1").focus();
 };
