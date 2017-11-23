@@ -435,6 +435,9 @@
             </div>
             <img src="./images/loader.svg" class="wwl-loader" id="window_splash_loader">
             <div id="s_pin" style="display:none">
+                <div class="wwl-pin-message">
+                    Введите ваш pin-код:
+                </div>
                 <input type="password" id="s_pin_1" data-position="1">
                 <input type="password" id="s_pin_2" data-position="2">
                 <input type="password" id="s_pin_3" data-position="3">
@@ -490,8 +493,7 @@
                 <li class="wwl-transfer-id">
                     <a href="#" data-tx="{{txid}}" id="transfer_a_info_{{txid}}">{{txidshort}}</a>
                 </li>
-                <li class="wwl-transfer-amount">
-                    {{amountReadable}} HLC
+                <li class="wwl-transfer-amount">{{amountReadable}} HLC
                 </li>
                 <ul class="wwl-transfer-info" style="display:none" id="transfer_info_{{txid}}">
                     <li>
