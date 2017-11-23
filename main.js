@@ -70,7 +70,11 @@ let mainWindow
 
 function createWindow () {
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 1100, height: 700 , frame: false, resizable: false, title: "Halykcoin"})
+  mainWindow = new BrowserWindow({
+      width: 1100, height: 700 ,
+      frame: false, resizable: false,
+      title: "Halykcoin",
+      icon: path.join(__dirname, 'images/icons/hlc-icon-128.png')})
 
   // and load the index.html of the app.
   mainWindow.loadURL(url.format({

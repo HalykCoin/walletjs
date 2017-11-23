@@ -4,7 +4,7 @@
  * Time: 8:48 PM
  * To change this template use File | Settings | File Templates.
  */
-const DEV = true;
+const DEV = false;
 var settings = null;
 const http = require('http');
 const exec = require('child_process').exec;
@@ -19,13 +19,15 @@ var blockchainServer;
 var rpcServerIsReady = false;
 
 var blockchainServerExec = './server/build/release/bin/monerod';
-
-
 var rpcServerExec = './server/build/release/bin/monero-wallet-rpc';
 
-const _defaultRpcHeaders = {"jsonrpc":"2.0", "id":"0"};
-var currentSettingscurrentSettings;
+const os = require('os');
+if(os.platform() == 'win32'){
+    blockchainServerExec = './server/halykcoind';
+    rpcServerExec = './server/halykcoin-wallet-rpc';
+}
 
+const _defaultRpcHeaders = {"jsonrpc":"2.0", "id":"0"};
 
 function _getRandomPort() {
     var charSet = '0123456789';
@@ -153,12 +155,12 @@ function init(appFolder, incommingSettings, onReady, onNetworkSync, onFail) {
 function destroy(){
     stopHalykcoinDeamon(function(){
         console.log("Halykcoin deamon is shouted down");
-        rpcServer.kill('SIGKILL');
+        if(rpcServer != null) rpcServer.kill('SIGKILL');
         process.exit();
     }, function(){
         console.log("Can't stop the deamon in normal way. Trying to kill the process");
-        rpcServer.kill('SIGKILL');
-        blockchainServer.kill('SIGKILL');
+        if(rpcServer != null) rpcServer.kill('SIGKILL');
+        if(blockchainServer != null) blockchainServer.kill('SIGKILL');
         process.exit();
     });
 }

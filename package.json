@@ -6,7 +6,7 @@
   "scripts": {
     "start": "electron ."
   },
-  "repository": "",
+  "repository": "https://github.com/HalykCoin/walletjs",
   "keywords": [
     "Wallet",
     "Cryptocurrency",
