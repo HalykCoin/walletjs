@@ -141,8 +141,8 @@ $Window.Body.History.ExtractTransfers = function(res){
 $Window.Body.History.ExtractTransfer = function(tr, status){
     var formatTime = moment.unix(tr.timestamp).format($Window.Body.History.timeFormat);
     var txidshort = tr.txid.substring(0, 4) + '..' + tr.txid.substring(tr.txid.length-4);
-    var amountReadable = ( parseFloat(tr.amount)/1000000000000 ).toFixed(9);
-    var feeReadable = parseFloat(tr.fee)/1000000000000;
+    var amountReadable = ( parseFloat(tr.amount)/100000000000 ).toFixed(9);
+    var feeReadable = parseFloat(tr.fee)/100000000000;
 
     var transfer = Object.assign(
         {   "status":status,

@@ -13,7 +13,7 @@ $Window.variables = [
     {name: "mining_stop", "value":"Процесс добычи остановлен"},
     {name: "send_success", "value":"Транзакция была успешно помщена в очередь. -{{Amount}}HLC"},
     {name: "send_error", "value":"Ошибка отпраки денег. {{Message}}"},
-    {name: "incoming", "value":"Входящая транцакция. +{{Amount}}HLC"},
+    {name: "incoming", "value":"Входящая транзакция. +{{Amount}}HLC"},
     {name: "clipboard", "value":"Данные скопированы в буфер обмена"}
 ];
 

@@ -68,7 +68,7 @@ $Window.Body.Recieive.UpdateQR = function(){
     if($('#window_page_receive_amount').val() != ""){
         var amount = parseFloat($('#window_page_receive_amount').val());
         if(amount>0)
-            qrExport += ":"+amount*1000000000000;
+            qrExport += ":"+amount*100000000000;
     }
 
     setQRCode('window_page_receive_qr', qrExport);

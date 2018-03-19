@@ -32,7 +32,7 @@ $(document).ready(function(){
 
 $Window = new Object();
 $Window.settings = new Object();
-$Window.settings.news_feed = 'ru.halykcoin.org';
+$Window.settings.news_feed = 'app.ru.halykcoin.org';
 
 $Window.Init = function(){
     $('#window_close').click(function (e) {
