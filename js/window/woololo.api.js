@@ -37,25 +37,11 @@ application.api.query = function(app, module, action, data, onSuccess, onFailure
         async: true,
         data: r_data,
         success: function(data){
-            var result = Object();
-            if(IsJsonString(data) ){
-                result = {
-                    success : true,
-                    data :JSONParse(data)
-                };
-                if(typeof (r_data) =="object"){
-                    result.request = r_data;
-                }
-
-                if(typeof onSuccess =="function")  onSuccess(result);
-
-            } else {
-                result = {
-                    success : false,
-                    data :null
-                };
-                if(typeof onFailure =="function")  onFailure(result);
-            }
+            var result = result = {
+                success : true,
+                data :data
+            };
+            if(typeof onSuccess =="function")  onSuccess(result);
         },
         error: onFailure
     });

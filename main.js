@@ -158,7 +158,7 @@ ipcMain.on('async', (event, arg) => {
         }
 
         if(arg.action == "rpc-deamon-console-sync" && typeof arg.body =="object"){
-            console.log(sync);
+            //console.log(sync);
             event.sender.send('async-reply-'+arg.msg_id, sync);
         }
 

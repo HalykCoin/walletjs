@@ -34,8 +34,8 @@ $Window.Dashboard.UpdateBalance = function(){
 
         $RPC.Api.GetBalance(function(resp){
 
-            var balance = (parseFloat(resp.result.unlocked_balance)/1000000000000);
-            var unlocked_balance = parseFloat((resp.result.balance)/          1000000000000);
+            var balance = (parseFloat(resp.result.unlocked_balance)/100000000000);
+            var unlocked_balance = parseFloat((resp.result.balance)/          100000000000);
 
             if (balance> 1000){
                 balance = balance.toFixed(8);

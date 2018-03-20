@@ -6,6 +6,7 @@
  */
 const DEV = false;
 var settings = null;
+var colors = require('colors/safe')
 const http = require('http');
 const exec = require('child_process').exec;
 const spawn = require('child_process').spawn;
@@ -249,7 +250,7 @@ function request(request, onSuccess, onError){
 
     if(typeof onError=="function") req.on('error', onError);
 
-    console.log("Post data:"+postData);
+    console.log("Post data:"+colors.green(postData));
     req.write(postData);
     req.end();
 }

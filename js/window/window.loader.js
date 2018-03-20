@@ -33,6 +33,7 @@ $Window.Loader.Slider.Init = function(){
     application.api.core.getFeed($Window.settings.news_feed, function(req){
         $("#loader-news").show();
         var template = $("#js_template_news").html();
+        console.log("application.api.core.getFeed:");
         console.log(req);
         var rendered = Mustache.render(template, req.data);
         $("#loader-news").html(rendered);

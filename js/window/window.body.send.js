@@ -18,7 +18,7 @@ $Window.Body.Send.Init = function(){
         address = address.replace(/\s/g, "");
 
         var payment_id = $('#window_page_send_id').val();
-        var amount = parseInt(parseFloat($('#window_page_send_amount').val()) * 1000000000000);
+        var amount = parseInt(parseFloat($('#window_page_send_amount').val()) * 100000000000);
         var securityLevel = 1;
 
         if(amount==0){
