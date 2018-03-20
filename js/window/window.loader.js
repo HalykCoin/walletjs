@@ -4,6 +4,7 @@
  * Time: 11:39 PM
  * To change this template use File | Settings | File Templates.
  */
+let shell = require('electron').shell;
 
 $Window.Loader = new Object();
 
@@ -36,6 +37,11 @@ $Window.Loader.Slider.Init = function(){
         var rendered = Mustache.render(template, req.data);
         $("#loader-news").html(rendered);
 
+
+        $('.wwl-news-link').bind('click', function(e){
+            e.preventDefault();
+            shell.openExternal($(this).attr('href'));
+        });
 
         $('#loader-news').unslider({
            // animation: 'fade',
@@ -74,11 +80,9 @@ $Window.Loader.update = function(args){
                 $Window.Controls.Show();
             } else {
                 $Window.Pin.Auth.Init();
-                $Window.Controls.Show();
+                //$Window.Controls.Show();
             }
         });
-
-
     }
 };
 
