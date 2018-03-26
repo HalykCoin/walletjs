@@ -1,6 +1,7 @@
 .idea
 server
 wallets/*
+miner/*
 
 # Logs
 logs
