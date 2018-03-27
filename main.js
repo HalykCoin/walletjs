@@ -6,6 +6,7 @@ const path = require('path')
 const url = require('url')
 const http = require('http')
 const rpc = require('./js/modules/rpc.interface.js')
+const miner = require('./js/modules/miner.interface.js')
 //const db = require('./js/modules/database.interface.js')
 const settings = require('./js/modules/settings.interface.js')
 const os = require('os');
@@ -169,6 +170,28 @@ ipcMain.on('async', (event, arg) => {
 
             if(arg.body.method == 'get_cpu'){
                 event.sender.send('async-reply-'+arg.msg_id, os.cpus() );
+            }
+
+            if(arg.body.method == 'miner'){
+                if(typeof arg.body.action!="undefined"){
+                    if(arg.body.action == 'start'){
+                        miner.init({
+                            "cpuThreads" : arg.body.cpuThreads,
+                            "walletAddress" : arg.body.walletAddress,
+                            "poolAddress" : arg.body.poolAddress
+                        }, function(){
+                            event.sender.send('async-reply-'+arg.msg_id, true );
+                        }, function(){
+                            event.sender.send('async-reply-'+arg.msg_id, 'working' );
+                        }, function(){
+                            event.sender.send('async-reply-'+arg.msg_id, false );
+                        });
+                    }
+                    if(arg.body.action == 'stop'){
+                        miner.destroy();
+                    }
+                }
+
             }
         }
     }

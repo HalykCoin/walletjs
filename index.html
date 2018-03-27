@@ -240,6 +240,21 @@
 
                             </select>
                         </div>
+
+                        <div class="wwl-field"><input type="checkbox" id="window_mining_is_pool">  Использовать пул для майнинга</div>
+
+                        <br>
+                        <div style="display: none" id="window_mining_is_pool_settings">
+
+                            <div class="wwl-field">Адрес пула:</div>
+                            <div class="wwl-input-container" >
+
+                                <input class="wwl-input" type="text" id="window_mining_pool_address"
+                                       placeholder="pool.halykcoin.org:2777" value="pool.halykcoin.org:2777">
+                            </div>
+                            <br>
+                        </div>
+
                         <a href="#" class="wwl-button-primary" id="window_mining_start">
                             Начать майнинг
                         </a>
@@ -429,7 +444,7 @@
                 halykcoin
             </div>
             <div id="window_splash_copy" class="copy">
-                Copyright (c) 2017 The Halykcoin Project.<br>
+                Copyright (c) 2017-2018 The Halykcoin Project.<br>
                 Portions Copyright (c) 2014-2017 The Monero Project.<br>
                 Portions Copyright (c) 2012-2013 The Cryptonote developers.<br>
             </div>

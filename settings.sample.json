@@ -1,0 +1,5 @@
+{
+    "minerExec" : "./bin/xmr-stak",
+    "poolAddress" : "pool.halykcoin.org:2777",
+    "poolAPI" : "pool.halykcoin.org:8113"
+}

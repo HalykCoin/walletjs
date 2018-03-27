@@ -19,8 +19,8 @@ var rpcServer =null;
 var blockchainServer;
 var rpcServerIsReady = false;
 
-var blockchainServerExec = './server/build/release/bin/monerod';
-var rpcServerExec = './server/build/release/bin/monero-wallet-rpc';
+var blockchainServerExec = './server/build/release/bin/halykcoind';
+var rpcServerExec = './server/build/release/bin/halykcoin-wallet-rpc';
 
 const os = require('os');
 if(os.platform() == 'win32'){
@@ -105,7 +105,7 @@ function init(appFolder, incommingSettings, onReady, onNetworkSync, onFail) {
             if(typeof onNetworkSync == "function") onNetworkSync( parseInt(found[1]), parseInt(found[2]));
         }
 
-        if(blockchainServerOutput.search("You may now start monero-wallet-cli.")>0){
+        if(blockchainServerOutput.search("You may now start monero-wallet-cli.")>0 || blockchainServerOutput.search("You may now start halykcoin-wallet-cli.")>0 ){
             console.log(`${data}`);
 
             rpcServer = spawn(rpcServerExec, args);

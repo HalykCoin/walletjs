@@ -56,7 +56,7 @@ $Window.Dashboard.Navigation.Init = function(){
         $Window.Dashboard.Navigation.Show(option);
     });
 
-    $Window.Dashboard.Navigation.Show('history');
+    $Window.Dashboard.Navigation.Show('send');
 };
 
 $Window.Dashboard.Navigation.Show = function(option){
