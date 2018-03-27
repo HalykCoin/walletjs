@@ -2,7 +2,7 @@
 server
 wallets/*
 bin/*
-.settings.json
+settings.json
 
 # Logs
 logs
