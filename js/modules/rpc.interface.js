@@ -19,8 +19,8 @@ var rpcServer =null;
 var blockchainServer;
 var rpcServerIsReady = false;
 
-var blockchainServerExec = './server/build/release/bin/monerod';
-var rpcServerExec = './server/build/release/bin/monero-wallet-rpc';
+var blockchainServerExec = './server/build/release/bin/halykcoind';
+var rpcServerExec = './server/build/release/bin/halykcoin-wallet-rpc';
 
 const os = require('os');
 if(os.platform() == 'win32'){
@@ -105,18 +105,20 @@ function init(appFolder, incommingSettings, onReady, onNetworkSync, onFail) {
             if(typeof onNetworkSync == "function") onNetworkSync( parseInt(found[1]), parseInt(found[2]));
         }
 
-        if(blockchainServerOutput.search("You may now start monero-wallet-cli.")>0){
-            console.log(`${data}`);
+        console.log(`${data}`);
+
+        if(blockchainServerOutput.search("You may now start monero-wallet-cli.")>0 || blockchainServerOutput.search("You may now start halykcoin-wallet-cli.")>0 ){
 
             rpcServer = spawn(rpcServerExec, args);
 
             rpcServer.stdout.on('data', (data) => {
                 var rpcServerOutput = `${data}`;
 
-                if(rpcServerOutput.search("Starting wallet rpc server")>0){
+                if(rpcServerOutput.search("Starting wallet RPC server")>0 || rpcServerOutput.search("Starting wallet rpc server")>0){
                     rpcServerIsReady = true;
                     console.log(`${data}`);
 
+                    console.log(colors.green("RPC deamon i ready"));
                     if(typeof onReady=="function") onReady();
                 }
             });
@@ -132,7 +134,7 @@ function init(appFolder, incommingSettings, onReady, onNetworkSync, onFail) {
 
         if(blockchainServerOutput.search("The daemon will start synchronizing with the network")>0){
             console.log(`${data}`);
-            //if(typeof onNetworkSync=="function") onNetworkSync();
+            if(typeof onNetworkSync=="function") onNetworkSync();
         }
 
         if(blockchainServerOutput.search("ERROR")>0){

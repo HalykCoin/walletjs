@@ -1,6 +1,8 @@
 .idea
 server
 wallets/*
+bin/*
+settings.json
 
 # Logs
 logs
