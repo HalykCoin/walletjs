@@ -180,7 +180,6 @@ $RPC.Api.StopMining = function(onSuccess, onError){
 };
 
 
-
 //RPC API core methods
 $RPC.Api.rpcWalletSend = function(args, callback, onError){
     var msg_id = +_getRandomPort(34);
