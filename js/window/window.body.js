@@ -36,6 +36,7 @@ $Window.Body.Init = function(){
                     clearInterval($Window.Body._getHeightInterval);
                     $Window.Body._getHeightInterval = null;
                     $Window.Body._heightIsOk = true;
+                    $RPC.Api.Save();
                 }
             });
         }

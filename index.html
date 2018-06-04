@@ -234,33 +234,41 @@
                         </div>
 
                     <div class="wwl-row">
-                        <div class="wwl-field">Количество потоков(чем больше, тем быстрее будет майнинг):</div>
-                        <div class="wwl-input-container">
-                            <select class="wwl-input" id="windows_mining_threads">
+                        <div id="window_mining_setting">
+                            <div class="wwl-field">Количество потоков(чем больше, тем быстрее будет майнинг):</div>
+                            <div class="wwl-input-container">
+                                <select class="wwl-input" id="windows_mining_threads">
 
-                            </select>
+                                </select>
+                            </div>
+
+                            <div class="wwl-field"><input type="checkbox" checked="checked" id="window_mining_is_pool">  Использовать пул для майнинга</div>
+
+                            <br>
+                            <div  id="window_mining_is_pool_settings">
+
+                                <div class="wwl-field">Адрес пула:</div>
+                                <div class="wwl-input-container" >
+
+                                    <input class="wwl-input" type="text" id="window_mining_pool_address"
+                                           placeholder="pool.halykcoin.org:2777" value="pool.halykcoin.org:2777">
+                                </div>
+                                <br>
+                            </div>
                         </div>
 
-                        <div class="wwl-field"><input type="checkbox" id="window_mining_is_pool">  Использовать пул для майнинга</div>
+                        <div id="window_mining_log" style="display: none">
 
-                        <br>
-                        <div style="display: none" id="window_mining_is_pool_settings">
-
-                            <div class="wwl-field">Адрес пула:</div>
-                            <div class="wwl-input-container" >
-
-                                <input class="wwl-input" type="text" id="window_mining_pool_address"
-                                       placeholder="pool.halykcoin.org:2777" value="pool.halykcoin.org:2777">
-                            </div>
-                            <br>
                         </div>
 
                         <a href="#" class="wwl-button-primary" id="window_mining_start">
                             Начать майнинг
                         </a>
-                        <a href="#" class="wwl-button" id="window_mining_stop">
+                        <a href="#" class="wwl-button" id="window_mining_stop" style="display: none">
                             Остановить майнинг
                         </a>
+
+
                     </div>
 
                 </div>

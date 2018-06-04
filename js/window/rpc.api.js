@@ -80,7 +80,12 @@ $RPC.Api.Transfer = function(amount, address, paymentId, mixIn, onSuccess, onErr
     $RPC.Api.rpcWalletSend(postData, onSuccess, onError);
 };
 
-
+$RPC.Api.Save = function(range, onSuccess, onError){
+    const postData = {"method":"store",
+        "params":{}
+    };
+    $RPC.Api.rpcWalletSend(postData, onSuccess, onError);
+};
 
 // $RPC.Api.GetAdressBook([1,2,3])
 $RPC.Api.GetAdressBook = function(range, onSuccess, onError){
@@ -89,6 +94,7 @@ $RPC.Api.GetAdressBook = function(range, onSuccess, onError){
     };
     $RPC.Api.rpcWalletSend(postData, onSuccess, onError);
 };
+
 
 $RPC.Api.AddAdressBook = function(address, payment_id, description, onSuccess, onError){
     const postData = {"method":"add_address_book",
@@ -235,7 +241,7 @@ $RPC.Api.mainProcessSend = function(args, callback, onError){
     });
 
     ipcRenderer.on('async-reply-'+msg_id, (event, arg) => {
-        console.log(arg);
+        //console.log(arg);
     if(typeof arg.error =='object'){
         if(typeof onError=="function") onError(arg.error.code, arg.error.message);
     } else {

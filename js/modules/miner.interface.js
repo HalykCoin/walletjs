@@ -18,6 +18,7 @@ let config = jsonSetting.config;
 
 var minerExecutive =null;
 var isRunning = false;
+var miner_output = [];
 
 
 function init(params, onReady, onNetworkSync, onFail) {
@@ -48,7 +49,7 @@ function init(params, onReady, onNetworkSync, onFail) {
         "bin/config.txt",
 
         "--currency",
-        "cryptonight",
+        "monero7",
 
         "--user",
         incomingParams.walletAddress,
@@ -66,6 +67,7 @@ function init(params, onReady, onNetworkSync, onFail) {
 
     minerExecutive.stdout.on('data', (data) => {
         console.log(`${data}`);
+        miner_output.push(data.toString());
         if(typeof onReady=="function") onReady();
         isRunning = true;
     });
@@ -92,6 +94,12 @@ function destroy(){
     minerExecutive = null;
 }
 
+function getOutput(){
+    var return_miner_output = miner_output;
+    miner_output = [];
+    return return_miner_output;
+}
+
 function prepareConfigs(params){
 
 
@@ -107,7 +115,7 @@ function prepareConfigs(params){
         [
             {"pool_address" : params.poolAddress, "wallet_address" : params.walletAddress, "rig_id" : "", "pool_password" : "", "use_nicehash" : false, "use_tls" : false, "tls_fingerprint" : "", "pool_weight" : 1 },
         ],
-        "currency" : "cryptonight"
+        "currency" : "monero7"
     };
 
 
@@ -120,8 +128,10 @@ function prepareConfigs(params){
 
     fs.writeFileSync('bin/cpu.txt', cpus_s_data, 'utf8');
     fs.writeFileSync('bin/pools.txt', pool_s_data, 'utf8');
+    fs.writeFileSync('bin/pool.txt', pool_s_data, 'utf8')
 }
 
 
 module.exports.init = init;
 module.exports.destroy = destroy;
+module.exports.getOutput = getOutput;

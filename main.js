@@ -190,6 +190,11 @@ ipcMain.on('async', (event, arg) => {
                     if(arg.body.action == 'stop'){
                         miner.destroy();
                     }
+
+                    if(arg.body.action == 'status'){
+                        var miner_output = miner.getOutput();
+                        event.sender.send('async-reply-'+arg.msg_id, miner_output );
+                    }
                 }
 
             }

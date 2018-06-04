@@ -659,3 +659,13 @@ body {
     left: 0;
     z-index: 0;
 }
+
+#window_mining_log{
+    padding: 15px;
+    overflow: scroll;
+    font-size: 11px;
+    height: 300px;
+    background-color: #062d5d;
+    color:lightseagreen;
+    font-family: "Lucida Console", "Lucida Saans", "Courier New";
+}
