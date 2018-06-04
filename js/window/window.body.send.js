@@ -19,7 +19,7 @@ $Window.Body.Send.Init = function(){
 
         var payment_id = $('#window_page_send_id').val();
         var amount = parseInt(parseFloat($('#window_page_send_amount').val()) * 100000000000);
-        var securityLevel = 1;
+        var securityLevel = 7;
 
         if(amount==0){
             $('#window_page_send_amount').focus();

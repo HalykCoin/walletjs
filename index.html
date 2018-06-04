@@ -483,14 +483,18 @@
       <ul id="loader-news-slider">
           {{#data}}
               <li id="loader-news-block" style="background: url('{{SourceSiteAddress}}files/{{#PageMeta}}{{HeaderImage}}{{/PageMeta}}_header_1366/{{#PageMeta}}{{HeaderImage}}{{/PageMeta}}.jpg') 50% 50% rgb(19, 25, 28);">
-                      <h1 id="loader-news-title">{{PageTitle}}</h1>
+                  <div class="feed-post-filter"></div>
+                  <h1 id="loader-news-title">{{PageTitle}}</h1>
                       <div id="loader-news-description">
-                      {{PostDescription}}
+                          {{PostDescription}}
 
-                      <a href="{{SourceSiteAddress}}{{PageId}}" target="_blank" class="wwl-button-primary wwl-news-link">
-                              Читать далее
-                      </a>
+
                       </div>
+                  <div class="loader-news-button">
+                      <a href="{{SourceSiteAddress}}{{PageId}}" target="_blank" class="wwl-button-primary wwl-news-link">
+                          Читать далее
+                      </a>
+                  </div>
               </li>
           {{/data}}
       </ul>
