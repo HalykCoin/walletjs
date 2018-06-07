@@ -86,9 +86,8 @@ $Window.Body.History.TransfersConcat = function(transfers){
 
 };
 
-
 $Window.Body.History.BackgroundUpdate = function(){
-    $RPC.Api.GetTransfers(true,true,true,true,true, $Window.Body._curentHeight-100, $Window.Body._curentHeight+100, function(res){
+    $RPC.Api.GetTransfers(true,true,true,true,true, $Window.Body._curentHeight-10, $Window.Body._curentHeight+1, function(res){
         var transfers = $Window.Body.History.ExtractTransfers(res);
 
         for(var i in transfers){

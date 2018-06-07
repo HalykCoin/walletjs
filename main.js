@@ -1,4 +1,5 @@
 const electron = require('electron')
+const process = require('process')
 const {ipcRenderer} = require('electron')
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
@@ -12,13 +13,21 @@ const settings = require('./js/modules/settings.interface.js')
 const os = require('os');
 const {Menu} = require('electron')
 const DEBUG = true;
-const APP_FOLDER = app.getPath("home")+ "/.walletjs";
+var APP_FOLDER = app.getPath("home")+ "/.walletjs";
 
 var {ipcMain} = electron;
 var defaultWallet = "default";
 var sync = {"sync_current":0, "sync_target":0 , "ready" : false};
 
-console.log("Folder path:"+app.getPath("documents"));
+if(process.argv.length>0){
+    for(var i in process.argv){
+        if(process.argv[i]=="-P"){
+            APP_FOLDER = ".walletjs";
+        }
+    }
+}
+
+console.log("Folder path:"+APP_FOLDER);
 
 //**********SETTINGS  INITIALIZATION********************
 

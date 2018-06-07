@@ -48,6 +48,7 @@ function initFileSystem(appPath){
             fs.accessSync(appPath+'/settings.json', fs.R_OK | fs.W_OK)
             console.log("Settings file exists");
         }catch(e){
+            fs.mkdir(appPath);
             fs.writeFileSync(appPath+'/settings.json', JSON.stringify(_setting_default));
             console.log("Create new settings file");
         }
