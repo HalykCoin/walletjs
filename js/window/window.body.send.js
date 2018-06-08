@@ -26,7 +26,7 @@ $Window.Body.Send.Init = function(){
             return false;
         }
 
-        if(address.length != 95){
+        if(address.length != 95 && address.length != 106){
             $('#window_page_send_address').focus();
             return false;
         }
