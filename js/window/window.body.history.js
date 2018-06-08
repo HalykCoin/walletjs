@@ -24,9 +24,9 @@ $Window.Body.History.Update = function(){
         if(res.result.height>1){
             $Window.Body._curentHeight = res.result.height;
 
-            var step = 200;
+            var step = 100;
 
-            for(var i=$Window.Body._curentHeight; i>0; i=i-step){
+            for(var i=$Window.Body._curentHeight; i>$Window.Body._curentHeight-10000; i=i-step){
                 var current_height = i;
                 var target = ((current_height-step)<0)? 0 : current_height-step;
                 //console.log("History for "+ target + " " + current_height);

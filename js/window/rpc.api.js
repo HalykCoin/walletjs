@@ -64,6 +64,7 @@ $RPC.Api.GetTransfers = function(t_it, t_out, t_pending, t_failed, t_pool, t_min
 //$RPC.Api.Transfer(5000000000000, '43xoo18sieLXp3h1bDvhpCZV5CPvwDgBuh54jWns8oqyUHsAf4GfzcqWqJ2Ykf7vMv4G7u1YB7RXh9CLjf7nTdySFMkhVJK', '', 1)
 $RPC.Api.Transfer = function(amount, address, paymentId, mixIn, onSuccess, onError){
 
+    amount = parseInt(amount);
     paymentId = (paymentId=='')?  "0000000000000000" : paymentId;
     mixIn = (mixIn<7)? 7 : mixIn;
     var fee = 1800000000;

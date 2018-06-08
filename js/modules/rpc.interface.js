@@ -222,8 +222,6 @@ function request(request, onSuccess, onError){
             }
 
             settings.setSetting(currentSettings);
-            console.log("New wallet has been generated. Wallet name: "+request.params.filename+ " Wallet password: "+
-                currentSettings.wallet_password);
         }  else {
             if(typeof onError=="function") req.on('error', onError);
         }
