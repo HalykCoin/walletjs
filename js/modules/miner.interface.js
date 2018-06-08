@@ -12,14 +12,19 @@ const exec = require('child_process').exec;
 const spawn = require('child_process').spawn;
 const crypto = require('crypto');
 const fs = require('fs')
-const appSettings = require('node-app-settings')
-var jsonSetting = appSettings.create('settings.json', 'JSON');
-let config = jsonSetting.config;
+//const appSettings = require('node-app-settings')
+//var jsonSetting = appSettings.create('settings.json', 'JSON');
+//let config = jsonSetting.config;
 
 var minerExecutive =null;
 var isRunning = false;
 var miner_output = [];
 
+var config = {
+    "minerExec" : "./bin/xmr-stak",
+    "poolAddress" : "pool.halykcoin.org:2777",
+    "poolAPI" : "pool.halykcoin.org:8113"
+};
 
 function init(params, onReady, onNetworkSync, onFail) {
 
