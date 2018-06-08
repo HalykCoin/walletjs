@@ -65,18 +65,24 @@ $RPC.Api.GetTransfers = function(t_it, t_out, t_pending, t_failed, t_pool, t_min
 $RPC.Api.Transfer = function(amount, address, paymentId, mixIn, onSuccess, onError){
 
     paymentId = (paymentId=='')?  "0000000000000000" : paymentId;
+    mixIn = (mixIn<7)? 7 : mixIn;
+    var fee = 1800000000;
 
-    const postData = {"method":"transfer_split",
+    var postData = {"method":"transfer_split",
         "params":{
-             "destinations": [{"amount": amount,
-                                "address" : address}],
-             "payment_id":paymentId},
-
-         "payment_id":paymentId,
-         "mixin" : mixIn,
-         "new_algorithm": true
-
+            "destinations": [{"amount": amount,
+                "address" : address}],
+            "mixin" : mixIn,
+            "priority":0,
+            "unlock_time":0,
+            "fee":fee
+        }
     };
+
+    if(address.length == 95){
+        postData.params.payment_id =paymentId;
+    }
+
     $RPC.Api.rpcWalletSend(postData, onSuccess, onError);
 };
 
